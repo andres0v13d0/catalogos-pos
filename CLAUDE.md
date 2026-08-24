@@ -1,6 +1,6 @@
 # CLAUDE.md — Contexto del proyecto para agentes de IA
 
-## Qué es este proyecto
+## Qué es este proyecto?
 
 `catalogos-pos` es el catálogo público de Flystock extraído a un repositorio independiente, para que cargue rápido incluso en conexiones lentas. Consume únicamente endpoints públicos ya existentes del backend de Flystock. No tiene backend propio, no tiene autenticación, no tiene ninguna funcionalidad del sistema POS interno.
 
