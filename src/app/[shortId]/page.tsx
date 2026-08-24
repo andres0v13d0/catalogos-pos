@@ -3,6 +3,7 @@ import { ProductGridSkeleton } from "@/components/ui/Skeleton";
 import { Suspense } from "react";
 import ProductGrid from "@/components/catalog/ProductGrid";
 import { Product } from "@/types/catalog";
+import type { Metadata } from "next";
 
 export const revalidate = 60;
 
@@ -17,6 +18,25 @@ function shuffleArray<T>(arr: T[]): T[] {
 
 interface PageProps {
   params: Promise<{ shortId: string }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { shortId } = await params;
+
+  try {
+    const { catalog, bodega } = await getCatalogProductIds(shortId);
+    const title = catalog?.publicName || bodega?.publicName || bodega?.name || "Catálogo";
+    const logoUrl = bodega?.logoUrl || null;
+
+    return {
+      title,
+      icons: logoUrl
+        ? { icon: logoUrl, apple: logoUrl }
+        : undefined,
+    };
+  } catch {
+    return { title: "Catálogo no encontrado" };
+  }
 }
 
 export default async function CatalogPage({ params }: PageProps) {

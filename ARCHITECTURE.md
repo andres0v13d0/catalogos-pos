@@ -87,10 +87,9 @@ No se requiere autenticación en ninguno. No se comparte sesión ni token con el
 ```
 src/
   app/
-    cat/
-      [shortId]/
-        page.tsx                  → Página principal del catálogo (Server Component)
-        p/[productId]/page.tsx    → Landing de producto individual
+    [shortId]/
+      page.tsx                    → Página principal del catálogo (Server Component)
+      p/[productId]/page.tsx      → Landing de producto individual
     orden-catalogo/
       [orderId]/page.tsx          → Vista pública de orden
   components/
@@ -120,8 +119,8 @@ src/
 
 | Ruta | Función |
 |---|---|
-| `/cat/[shortId]` | Catálogo público de una bodega |
-| `/cat/[shortId]/p/[productId]` | Landing de producto individual |
+| `/[shortId]` | Catálogo público de una bodega |
+| `/[shortId]/p/[productId]` | Landing de producto individual |
 | `/orden-catalogo/[orderId]` | Vista pública de la orden creada |
 
 ## Rendering strategy
