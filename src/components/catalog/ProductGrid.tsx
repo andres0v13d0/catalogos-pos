@@ -316,8 +316,9 @@ export default function ProductGrid({ shortId, initialProducts, allProductIds, c
       const firstImage = cart[0]?.productImageUrl || "";
       let shareUrl: string | null = null;
       try {
-        await generateOrderShareLink(order.id, order.orderNumber, firstImage);
-        shareUrl = `${window.location.origin}/orden-catalogo/${order.id}`;
+        const { shareId } = await generateOrderShareLink(order.id, order.orderNumber, firstImage);
+        const posUrl = process.env.NEXT_PUBLIC_POS_URL || "https://pos.flystock.com.co";
+        shareUrl = `${posUrl}/share/${shareId}`;
       } catch { /* si falla el share, continuar sin él */ }
 
       const phone = catalogData?.whatsappNumber || bodega?.phone;

@@ -77,8 +77,7 @@ Kiro debe confirmar la ruta exacta de cada uno al momento de leer el árbol real
 | 1 | GET | `/public/catalog/c/:shortId/product-ids` | IDs de productos + metadata del catálogo |
 | 2 | POST | `/public/catalog/products/previews` | Detalle de productos (batch) |
 | 3 | POST | `/public/catalog-orders` | Crear orden |
-| 4 | GET | `/public/catalog-orders/:id` | Ver detalle de orden (post-compra) |
-| 5 | POST | `/share/order/:orderId` | Generar link compartible para WhatsApp |
+| 4 | POST | `/share/order/:orderId` | Generar link compartible para WhatsApp |
 
 No se requiere autenticación en ninguno. No se comparte sesión ni token con el POS.
 
@@ -90,8 +89,6 @@ src/
     [shortId]/
       page.tsx                    → Página principal del catálogo (Server Component)
       p/[productId]/page.tsx      → Landing de producto individual
-    orden-catalogo/
-      [orderId]/page.tsx          → Vista pública de orden
   components/
     catalog/
       ProductGrid.tsx             → Equivalente a MasonryGrid2Col
@@ -121,25 +118,27 @@ src/
 |---|---|
 | `/[shortId]` | Catálogo público de una bodega |
 | `/[shortId]/p/[productId]` | Landing de producto individual |
-| `/orden-catalogo/[orderId]` | Vista pública de la orden creada |
 
 ## Rendering strategy
 
-- `/cat/[shortId]`: ISR con revalidación (ej. cada 60s, o vía webhook desde el backend cuando el catálogo cambie) — carga inicial instantánea, contenido pre-renderizado en servidor.
-- `/cat/[shortId]/p/[productId]`: mismo enfoque, ISR.
-- `/orden-catalogo/[orderId]`: renderizado dinámico (no cacheable, cada orden es única y se consulta en vivo).
+- `/[shortId]`: ISR con revalidación (ej. cada 60s) — carga inicial instantánea, contenido pre-renderizado en servidor.
+- `/[shortId]/p/[productId]`: mismo enfoque, ISR.
 - Carrito y checkout: Client Components, ya que dependen de interacción y `localStorage`.
 
 ## Variables de entorno
 
 ```
 NEXT_PUBLIC_API_URL=https://api.flystock.com.co/api
+NEXT_PUBLIC_POS_URL=https://pos.flystock.com.co
 ```
 
 > **Nota:** El backend NestJS tiene `app.setGlobalPrefix('api')`, por lo que **todas las rutas requieren el prefijo `/api`**. La URL base correcta es `https://api.flystock.com.co/api` (no `https://api.flystock.com.co` sin sufijo). Confirmado con curl: sin `/api` se obtiene "Cannot GET ..." (ruta inexistente); con `/api` se accede correctamente al controlador.
+> 
+> `NEXT_PUBLIC_POS_URL` se usa para construir los links de share de órdenes (la vista de orden vive en el POS, no en este proyecto).
 
 ## Fuera de alcance (explícitamente)
 
 - Autenticación / login
 - Cualquier pantalla del POS (facturación, inventario, pedidos internos, dashboard)
 - Modificaciones al backend — este proyecto es 100% consumidor
+- **Ver/trackear pedidos después de creados** — la vista `/orden-catalogo/:orderId` es responsabilidad del POS (pos.flystock.com.co), no de este proyecto. catalogos-pos solo crea la orden y genera el link de share; la visualización posterior del pedido la maneja el POS.

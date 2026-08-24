@@ -117,19 +117,14 @@ export async function generateOrderShareLink(
   orderNumber: string,
   imageUrl: string
 ): Promise<{ shareId: string }> {
+  const posUrl = process.env.NEXT_PUBLIC_POS_URL || "https://pos.flystock.com.co";
   const res = await fetch(`${API_URL}/share/order/${orderId}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ orderNumber, imageUrl, baseUrl: window.location.origin }),
+    body: JSON.stringify({ orderNumber, imageUrl, baseUrl: posUrl }),
   });
   if (!res.ok) throw new Error("Error generando link");
   return res.json();
 }
 
-export async function getPublicCatalogOrder(orderId: string): Promise<OrderResponse> {
-  const res = await fetch(`${API_URL}/public/catalog-orders/${orderId}`, {
-    cache: "no-store",
-  });
-  if (!res.ok) throw new Error("Pedido no encontrado");
-  return res.json();
-}
+

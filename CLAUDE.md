@@ -47,6 +47,7 @@ Lo único permitido como adición visual nueva: skeleton loaders en estados de c
 - No incluir ninguna pantalla o lógica del POS interno (facturación, inventario, gestión de pedidos, dashboard admin).
 - No modificar el backend de Flystock — este proyecto es estrictamente un consumidor de los endpoints ya existentes.
 - No introducir dependencias de pago (sin CDN de imágenes de pago, sin servicios de transformación de imágenes de terceros) salvo que se apruebe explícitamente.
+- **No implementar vista de orden/pedido** — ver/trackear un pedido después de creado es responsabilidad del POS (pos.flystock.com.co). Este proyecto solo crea la orden y genera el share link; la visualización posterior no vive aquí.
 
 ## Endpoints disponibles
 
@@ -55,7 +56,6 @@ Lo único permitido como adición visual nueva: skeleton loaders en estados de c
 | GET | `/public/catalog/c/:shortId/product-ids` | IDs de productos + metadata del catálogo |
 | POST | `/public/catalog/products/previews` | Detalle de productos (batch) |
 | POST | `/public/catalog-orders` | Crear orden |
-| GET | `/public/catalog-orders/:id` | Ver detalle de orden |
 | POST | `/share/order/:orderId` | Generar link compartible de WhatsApp |
 
 Ninguno requiere autenticación.
