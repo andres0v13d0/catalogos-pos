@@ -2,6 +2,7 @@
 import { useState, useCallback, useRef } from "react";
 import { FiCheck, FiDownload, FiX, FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { MdImage } from "react-icons/md";
+import Image from "next/image";
 import VariantSelector from "./VariantSelector";
 import QuantitySelector from "./QuantitySelector";
 import { Product, Combination, CartItem } from "@/types/catalog";
@@ -18,7 +19,9 @@ function ImageCarousel({ images, productName }: { images: string[]; productName:
 
   if (images.length <= 1) {
     return images[0] ? (
-      <img src={images[0]} alt={productName} className="w-full h-auto object-contain block" loading="lazy" />
+      <div className="relative w-full aspect-square">
+        <Image src={images[0]} alt={productName} fill className="object-contain" sizes="(max-width: 768px) 100vw, 280px" priority={false} />
+      </div>
     ) : (
       <div className="w-full h-48 flex items-center justify-center">
         <MdImage className="w-12 h-12 text-gray-300" />
@@ -84,8 +87,8 @@ function ImageCarousel({ images, productName }: { images: string[]; productName:
         }}
       >
         {images.map((src, i) => (
-          <div key={i} className="relative w-full flex-shrink-0">
-            <img src={src} alt={`${productName} ${i + 1}`} className="w-full h-auto object-contain block" loading={i === 0 ? "eager" : "lazy"} draggable={false} />
+          <div key={i} className="relative w-full flex-shrink-0 aspect-square">
+            <Image src={src} alt={`${productName} ${i + 1}`} fill className="object-contain" sizes="(max-width: 768px) 100vw, 280px" priority={i === 0} draggable={false} />
           </div>
         ))}
       </div>
@@ -195,7 +198,11 @@ export default function ProductCard({
         {(() => {
           const allImages = [product.imageUrl, ...(product.images || [])].filter(Boolean) as string[];
           if (allImages.length > 1) return <ImageCarousel images={allImages} productName={product.name} />;
-          if (product.imageUrl) return <img src={product.imageUrl} alt={product.name} className="w-full h-auto object-contain block" loading="lazy" />;
+          if (product.imageUrl) return (
+            <div className="relative w-full aspect-square">
+              <Image src={product.imageUrl} alt={product.name} fill className="object-contain" sizes="(max-width: 768px) 100vw, 280px" />
+            </div>
+          );
           return <div className="w-full h-48 flex items-center justify-center"><MdImage className="w-12 h-12 text-gray-300" /></div>;
         })()}
         {product.imageUrl && (

@@ -1,6 +1,7 @@
 "use client";
 import { FaWhatsapp } from "react-icons/fa";
 import { FiSearch, FiX } from "react-icons/fi";
+import Image from "next/image";
 import CategoryNav from "./CategoryNav";
 import { CatalogCategory } from "@/types/catalog";
 
@@ -36,16 +37,11 @@ export default function CatalogDesktopHeader({
   return (
     <div className="hidden md:block">
       {/* Banner — full width, no padding, pegado arriba */}
-      <div className="relative w-full overflow-hidden bg-gray-200" style={{ maxHeight: 320 }}>
+      <div className="relative w-full overflow-hidden bg-gray-200" style={{ maxHeight: 320, height: 256 }}>
         {bannerSrc ? (
-          <img
-            src={bannerSrc}
-            alt="Banner"
-            className="w-full object-cover"
-            style={{ maxHeight: 320, objectPosition: "center" }}
-          />
+          <Image src={bannerSrc} alt="Banner" fill className="object-cover" sizes="100vw" priority />
         ) : (
-          <div className="w-full h-64 bg-gradient-to-r from-orange-400 to-orange-500" />
+          <div className="w-full h-full bg-gradient-to-r from-orange-400 to-orange-500" />
         )}
         <div
           className="absolute bottom-0 left-0 right-0 h-24"
@@ -58,9 +54,9 @@ export default function CatalogDesktopHeader({
         <div className="max-w-screen-xl mx-auto px-6 flex items-center gap-5 py-3">
           {/* Logo superpuesto — se sube sobre el banner con -mt-12 */}
           <div className="flex-shrink-0 -mt-12 relative z-10">
-            <div className="w-24 h-24 rounded-2xl overflow-hidden border-4 border-white shadow-lg bg-gray-100 flex items-center justify-center">
+            <div className="w-24 h-24 rounded-2xl overflow-hidden border-4 border-white shadow-lg bg-gray-100 flex items-center justify-center relative">
               {logoSrc ? (
-                <img src={logoSrc} alt="Logo" className="w-full h-full object-cover" />
+                <Image src={logoSrc} alt="Logo" fill className="object-cover" sizes="96px" />
               ) : (
                 <span
                   className="text-3xl font-bold text-white w-full h-full flex items-center justify-center"

@@ -1,6 +1,7 @@
 "use client";
 import { FaWhatsapp } from "react-icons/fa";
 import { FiSearch, FiX } from "react-icons/fi";
+import Image from "next/image";
 import CategoryNav from "./CategoryNav";
 import { CatalogCategory } from "@/types/catalog";
 
@@ -42,9 +43,9 @@ export default function CatalogStickyHeader({
       }`}
     >
       <div className="flex items-center gap-3 px-4 py-2.5">
-        <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 bg-gray-100 flex items-center justify-center">
+        <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 bg-gray-100 flex items-center justify-center relative">
           {logoSrc ? (
-            <img src={logoSrc} alt="Logo" className="w-full h-full object-cover" />
+            <Image src={logoSrc} alt="Logo" fill className="object-cover" sizes="40px" />
           ) : (
             <span
               className="font-bold text-white text-lg w-full h-full flex items-center justify-center"

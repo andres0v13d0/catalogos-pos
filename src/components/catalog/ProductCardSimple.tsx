@@ -1,58 +1,7 @@
 "use client";
-import { useState, useRef, useEffect } from "react";
 import { MdImage } from "react-icons/md";
+import Image from "next/image";
 import { Product } from "@/types/catalog";
-
-// Lazy image with shimmer skeleton
-function LazyImage({ src, alt }: { src: string; alt: string }) {
-  const [loaded, setLoaded] = useState(false);
-  const [inView, setInView] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setInView(true); obs.disconnect(); } },
-      { rootMargin: "200px" }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-
-  return (
-    <div ref={ref} className="relative w-full">
-      {!loaded && (
-        <div
-          style={{
-            width: "100%",
-            paddingBottom: "120%",
-            background: "linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)",
-            backgroundSize: "200% 100%",
-            animation: "shimmer 1.4s infinite",
-          }}
-        />
-      )}
-      {inView && (
-        <img
-          src={src}
-          alt={alt}
-          decoding="async"
-          loading="lazy"
-          draggable={false}
-          onLoad={() => setLoaded(true)}
-          className="w-full h-auto object-cover block select-none"
-          style={{
-            opacity: loaded ? 1 : 0,
-            transition: "opacity 0.3s ease",
-            position: loaded ? "relative" : "absolute",
-            top: 0, left: 0,
-          }}
-        />
-      )}
-    </div>
-  );
-}
 
 interface ProductCardSimpleProps {
   product: Product;
@@ -72,11 +21,17 @@ export default function ProductCardSimple({ product, onClick, priceDisplay }: Pr
       onClick={onClick}
       className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer"
     >
-      <div className="relative w-full">
+      <div className="relative w-full aspect-[5/6]">
         {product.imageUrl ? (
-          <LazyImage src={product.imageUrl} alt={product.name} />
+          <Image
+            src={product.imageUrl}
+            alt={product.name}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 50vw, 200px"
+          />
         ) : (
-          <div className="w-full h-32 flex items-center justify-center bg-gray-100 text-gray-400">
+          <div className="w-full h-full flex items-center justify-center bg-gray-100 text-gray-400">
             <MdImage size={32} />
           </div>
         )}

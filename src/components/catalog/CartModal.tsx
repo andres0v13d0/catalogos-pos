@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { FiX, FiTrash2 } from "react-icons/fi";
 import { MdImage } from "react-icons/md";
 import { FaWhatsapp } from "react-icons/fa";
+import Image from "next/image";
 import { CartItem } from "@/types/catalog";
 
 interface CartModalProps {
@@ -44,9 +45,9 @@ export default function CartModal({ cart, onClose, onConfirm, onUpdateCart, requ
     <div className="flex-1 overflow-y-auto px-4 py-3 space-y-3">
       {cart.map((item, idx) => (
         <div key={item.cartItemId || `${item.productId}-${idx}`} className="flex gap-3 p-3 rounded-xl border border-gray-100 bg-white">
-          <div className="w-14 h-14 rounded-xl overflow-hidden flex-shrink-0 bg-gray-100 flex items-center justify-center">
+          <div className="w-14 h-14 rounded-xl overflow-hidden flex-shrink-0 bg-gray-100 flex items-center justify-center relative">
             {item.productImageUrl
-              ? <img src={item.productImageUrl} alt={item.productName} className="w-full h-full object-cover" />
+              ? <Image src={item.productImageUrl} alt={item.productName} fill className="object-cover" sizes="56px" />
               : <MdImage className="w-6 h-6 text-gray-300" />}
           </div>
           <div className="flex-1 min-w-0">

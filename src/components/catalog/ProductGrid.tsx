@@ -2,6 +2,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { FiShoppingBag, FiChevronUp } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
+import Image from "next/image";
 import ProductCard from "./ProductCard";
 import ProductCardSimple, { ProductCardSimpleSkeleton } from "./ProductCardSimple";
 import FloatingCartButton from "./FloatingCartButton";
@@ -366,10 +367,10 @@ export default function ProductGrid({ shortId, initialProducts, allProductIds, c
       />
 
       {/* Banner móvil — pegado arriba, sin padding */}
-      <div className="md:hidden">
+      <div className="md:hidden relative w-full h-32">
         {bannerSrc
-          ? <img src={bannerSrc} alt="Banner" className="w-full h-auto block" />
-          : <div className="w-full h-32 bg-gradient-to-r from-orange-400 to-orange-500" />}
+          ? <Image src={bannerSrc} alt="Banner" fill className="object-cover" sizes="100vw" priority />
+          : <div className="w-full h-full bg-gradient-to-r from-orange-400 to-orange-500" />}
       </div>
 
       {/* Header desktop (banner full-width + barra info + categorías) */}
