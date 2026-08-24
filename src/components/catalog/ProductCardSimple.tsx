@@ -29,6 +29,7 @@ export default function ProductCardSimple({ product, onClick, priceDisplay }: Pr
             fill
             className="object-cover"
             sizes="(max-width: 768px) 50vw, 200px"
+            quality={60}
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center bg-gray-100 text-gray-400">

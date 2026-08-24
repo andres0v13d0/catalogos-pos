@@ -20,7 +20,7 @@ function ImageCarousel({ images, productName }: { images: string[]; productName:
   if (images.length <= 1) {
     return images[0] ? (
       <div className="relative w-full aspect-square">
-        <Image src={images[0]} alt={productName} fill className="object-contain" sizes="(max-width: 768px) 100vw, 280px" priority={false} />
+        <Image src={images[0]} alt={productName} fill className="object-contain" sizes="(max-width: 768px) 100vw, 280px" quality={60} />
       </div>
     ) : (
       <div className="w-full h-48 flex items-center justify-center">
@@ -88,7 +88,7 @@ function ImageCarousel({ images, productName }: { images: string[]; productName:
       >
         {images.map((src, i) => (
           <div key={i} className="relative w-full flex-shrink-0 aspect-square">
-            <Image src={src} alt={`${productName} ${i + 1}`} fill className="object-contain" sizes="(max-width: 768px) 100vw, 280px" priority={i === 0} draggable={false} />
+            <Image src={src} alt={`${productName} ${i + 1}`} fill className="object-contain" sizes="(max-width: 768px) 100vw, 280px" quality={60} priority={i === 0} draggable={false} />
           </div>
         ))}
       </div>
@@ -200,7 +200,7 @@ export default function ProductCard({
           if (allImages.length > 1) return <ImageCarousel images={allImages} productName={product.name} />;
           if (product.imageUrl) return (
             <div className="relative w-full aspect-square">
-              <Image src={product.imageUrl} alt={product.name} fill className="object-contain" sizes="(max-width: 768px) 100vw, 280px" />
+              <Image src={product.imageUrl} alt={product.name} fill className="object-contain" sizes="(max-width: 768px) 100vw, 280px" quality={60} />
             </div>
           );
           return <div className="w-full h-48 flex items-center justify-center"><MdImage className="w-12 h-12 text-gray-300" /></div>;

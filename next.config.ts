@@ -9,6 +9,8 @@ const nextConfig: NextConfig = {
         pathname: "/**",
       },
     ],
+    deviceSizes: [640, 828, 1200, 1920],
+    imageSizes: [48, 96, 192, 384],
   },
 };
 
