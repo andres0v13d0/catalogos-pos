@@ -99,10 +99,13 @@ export interface OrderResponse {
   catalog?: { publicName?: string };
 }
 
-export async function createPublicCatalogOrder(data: CreateOrderPayload): Promise<OrderResponse> {
+export async function createPublicCatalogOrder(data: CreateOrderPayload, idempotencyKey?: string): Promise<OrderResponse> {
+  const headers: Record<string, string> = { "Content-Type": "application/json" };
+  if (idempotencyKey) headers["Idempotency-Key"] = idempotencyKey;
+
   const res = await fetch(`${API_URL}/public/catalog-orders`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers,
     body: JSON.stringify(data),
   });
   if (!res.ok) {

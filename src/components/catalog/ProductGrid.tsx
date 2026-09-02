@@ -176,6 +176,9 @@ export default function ProductGrid({ shortId, initialProducts, allProductIds, c
   const [showCart, setShowCart] = useState(false);
   const [showCheckout, setShowCheckout] = useState(false);
   const [creatingOrder, setCreatingOrder] = useState(false);
+  const [orderError, setOrderError] = useState<string | null>(null);
+  // Idempotency: generado al abrir checkout, reutilizado en reintentos
+  const orderAttemptIdRef = useRef<string | null>(null);
   const [pendingWhatsApp, setPendingWhatsApp] = useState<{ phone: string; message: string } | null>(null);
   const [showStickyHeader, setShowStickyHeader] = useState(false);
   const [showStickySearch, setShowStickySearch] = useState(false);
@@ -282,7 +285,14 @@ export default function ProductGrid({ shortId, initialProducts, allProductIds, c
     if (catalogData?.requiresCheckout) {
       setShowCart(false);
       setShowCheckout(true);
+      setOrderError(null);
+      if (!orderAttemptIdRef.current) {
+        orderAttemptIdRef.current = crypto.randomUUID();
+      }
     } else {
+      if (!orderAttemptIdRef.current) {
+        orderAttemptIdRef.current = crypto.randomUUID();
+      }
       handleOrder(null);
     }
   };
@@ -291,27 +301,30 @@ export default function ProductGrid({ shortId, initialProducts, allProductIds, c
     try {
       setCreatingOrder(true);
 
-      const order = await createPublicCatalogOrder({
-        catalogId: catalogData.id,
-        customerName: customerData?.name,
-        customerPhone: customerData?.phone,
-        customerAddress: customerData?.address,
-        customerNeighborhood: customerData?.neighborhood,
-        customerDepartment: customerData?.department,
-        customerCity: customerData?.city,
-        notes: customerData?.notes,
-        totalAmount: getCartTotal(),
-        items: cart.map((item) => ({
-          productId: item.productId,
-          combinationId: item.combinationId || undefined,
-          productName: item.productName,
-          productImageUrl: item.productImageUrl,
-          variantOptions: item.variantOptions || [],
-          quantity: item.quantity,
-          unitPrice: item.unitPrice,
-          totalPrice: item.totalPrice,
-        })),
-      });
+      const order = await createPublicCatalogOrder(
+        {
+          catalogId: catalogData.id,
+          customerName: customerData?.name,
+          customerPhone: customerData?.phone,
+          customerAddress: customerData?.address,
+          customerNeighborhood: customerData?.neighborhood,
+          customerDepartment: customerData?.department,
+          customerCity: customerData?.city,
+          notes: customerData?.notes,
+          totalAmount: getCartTotal(),
+          items: cart.map((item) => ({
+            productId: item.productId,
+            combinationId: item.combinationId || undefined,
+            productName: item.productName,
+            productImageUrl: item.productImageUrl,
+            variantOptions: item.variantOptions || [],
+            quantity: item.quantity,
+            unitPrice: item.unitPrice,
+            totalPrice: item.totalPrice,
+          })),
+        },
+        orderAttemptIdRef.current ?? undefined,
+      );
 
       // Generate share link (fail silently)
       const firstImage = cart[0]?.productImageUrl || "";
@@ -328,10 +341,12 @@ export default function ProductGrid({ shortId, initialProducts, allProductIds, c
       clearCart();
       setShowCheckout(false);
       setShowCart(false);
+      orderAttemptIdRef.current = null; // descartar — próxima compra generará uno nuevo
 
       if (phone) setPendingWhatsApp({ phone, message });
     } catch (err) {
       console.error("Error al crear orden:", err);
+      setOrderError(err instanceof Error ? err.message : "Error al crear el pedido. Intenta de nuevo.");
     } finally {
       setCreatingOrder(false);
     }
@@ -513,20 +528,22 @@ export default function ProductGrid({ shortId, initialProducts, allProductIds, c
       {showCart && (
         <CartModal
           cart={cart}
-          onClose={() => setShowCart(false)}
+          onClose={() => { setShowCart(false); setOrderError(null); orderAttemptIdRef.current = null; }}
           onConfirm={handleCartConfirm}
           onUpdateCart={setCart}
           requiresCheckout={catalogData?.requiresCheckout}
           creatingOrder={creatingOrder}
+          error={orderError}
         />
       )}
 
       {/* Checkout modal */}
       {showCheckout && (
         <CheckoutModal
-          onClose={() => setShowCheckout(false)}
+          onClose={() => { setShowCheckout(false); setOrderError(null); orderAttemptIdRef.current = null; }}
           onConfirm={handleOrder}
           creatingOrder={creatingOrder}
+          error={orderError}
         />
       )}
 

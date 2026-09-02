@@ -2,7 +2,6 @@
 import { useState } from "react";
 import { FaWhatsapp } from "react-icons/fa";
 import { FiChevronRight } from "react-icons/fi";
-import Image from "next/image";
 import { CartItem } from "@/types/catalog";
 
 interface FloatingCartButtonProps {
@@ -52,7 +51,7 @@ export default function FloatingCartButton({ cart, cartTotal, onOpenCart }: Floa
               {cart.slice(0, 4).map((item, i) => (
                 <div key={i} className="flex items-center gap-3 p-2 bg-gray-50 rounded-lg">
                   {item.productImageUrl
-                    ? <div className="relative w-10 h-10 rounded-lg overflow-hidden flex-shrink-0"><Image src={item.productImageUrl} alt={item.productName} fill className="object-cover" sizes="40px" /></div>
+                    ? <img src={item.productImageUrl} alt={item.productName} width={40} height={40} className="object-cover w-10 h-10 rounded-lg flex-shrink-0" />
                     : <div className="w-10 h-10 bg-gray-200 rounded-lg flex-shrink-0" />}
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-semibold text-gray-800 truncate">{item.productName}</p>

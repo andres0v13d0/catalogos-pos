@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { FiX, FiTrash2 } from "react-icons/fi";
 import { MdImage } from "react-icons/md";
 import { FaWhatsapp } from "react-icons/fa";
-import Image from "next/image";
 import { CartItem } from "@/types/catalog";
 
 interface CartModalProps {
@@ -13,9 +12,10 @@ interface CartModalProps {
   onUpdateCart: (cart: CartItem[]) => void;
   requiresCheckout?: boolean;
   creatingOrder?: boolean;
+  error?: string | null;
 }
 
-export default function CartModal({ cart, onClose, onConfirm, onUpdateCart, requiresCheckout, creatingOrder }: CartModalProps) {
+export default function CartModal({ cart, onClose, onConfirm, onUpdateCart, requiresCheckout, creatingOrder, error }: CartModalProps) {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => { setTimeout(() => setVisible(true), 10); }, []);
@@ -47,7 +47,7 @@ export default function CartModal({ cart, onClose, onConfirm, onUpdateCart, requ
         <div key={item.cartItemId || `${item.productId}-${idx}`} className="flex gap-3 p-3 rounded-xl border border-gray-100 bg-white">
           <div className="w-14 h-14 rounded-xl overflow-hidden flex-shrink-0 bg-gray-100 flex items-center justify-center relative">
             {item.productImageUrl
-              ? <Image src={item.productImageUrl} alt={item.productName} fill className="object-cover" sizes="56px" />
+              ? <img src={item.productImageUrl} alt={item.productName} width={56} height={56} className="object-cover w-full h-full" />
               : <MdImage className="w-6 h-6 text-gray-300" />}
           </div>
           <div className="flex-1 min-w-0">
@@ -80,6 +80,9 @@ export default function CartModal({ cart, onClose, onConfirm, onUpdateCart, requ
 
   const renderFooter = (fullWidth: boolean) => (
     <div className="px-5 py-4 border-t border-gray-100">
+      {error && (
+        <p className="mx-0 mb-3 text-sm text-red-600 bg-red-50 rounded-xl px-4 py-3">{error}</p>
+      )}
       {total > 0 && (
         <div className="flex justify-between items-center mb-3">
           <span className="text-gray-600 font-medium">Total estimado:</span>
