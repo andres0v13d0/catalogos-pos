@@ -10,7 +10,6 @@ interface CheckoutModalProps {
   onClose: () => void;
   onConfirm: (data: CustomerData) => void;
   creatingOrder: boolean;
-  error?: string | null;
 }
 
 interface DepartmentEntry {
@@ -19,7 +18,7 @@ interface DepartmentEntry {
   ciudades: string[];
 }
 
-export default function CheckoutModal({ onClose, onConfirm, creatingOrder, error }: CheckoutModalProps) {
+export default function CheckoutModal({ onClose, onConfirm, creatingOrder }: CheckoutModalProps) {
   const [visible, setVisible] = useState(false);
   const [form, setForm] = useState({
     firstName: "",
@@ -157,9 +156,6 @@ export default function CheckoutModal({ onClose, onConfirm, creatingOrder, error
 
             {/* Footer */}
             <div className="px-5 py-4 border-t border-gray-100">
-              {error && (
-                <p className="mb-3 text-sm text-red-600 bg-red-50 rounded-xl px-4 py-3">{error}</p>
-              )}
               <button
                 onClick={handleSubmit}
                 disabled={creatingOrder}
@@ -260,21 +256,16 @@ export default function CheckoutModal({ onClose, onConfirm, creatingOrder, error
             </div>
 
             {/* Footer */}
-            <div className="px-7 py-5 border-t border-gray-100 flex flex-col gap-3">
-              {error && (
-                <p className="text-sm text-red-600 bg-red-50 rounded-xl px-4 py-3">{error}</p>
-              )}
-              <div className="flex justify-end">
-                <button
-                  onClick={handleSubmit}
-                  disabled={creatingOrder}
-                  className="px-8 py-3.5 rounded-2xl text-base font-bold flex items-center justify-center gap-3 text-white transition-all disabled:opacity-70 cursor-pointer hover:-translate-y-0.5"
-                  style={{ background: "linear-gradient(135deg, #25D366 0%, #128C7E 100%)", boxShadow: "0 4px 16px rgba(37,211,102,0.3)" }}
-                >
-                  {creatingOrder ? <AiOutlineLoading3Quarters className="w-5 h-5 animate-spin" /> : <FaWhatsapp className="w-5 h-5" />}
-                  {creatingOrder ? "Procesando..." : "Confirmar y enviar por WhatsApp"}
-                </button>
-              </div>
+            <div className="px-7 py-5 border-t border-gray-100 flex justify-end">
+              <button
+                onClick={handleSubmit}
+                disabled={creatingOrder}
+                className="px-8 py-3.5 rounded-2xl text-base font-bold flex items-center justify-center gap-3 text-white transition-all disabled:opacity-70 cursor-pointer hover:-translate-y-0.5"
+                style={{ background: "linear-gradient(135deg, #25D366 0%, #128C7E 100%)", boxShadow: "0 4px 16px rgba(37,211,102,0.3)" }}
+              >
+                {creatingOrder ? <AiOutlineLoading3Quarters className="w-5 h-5 animate-spin" /> : <FaWhatsapp className="w-5 h-5" />}
+                {creatingOrder ? "Procesando..." : "Confirmar y enviar por WhatsApp"}
+              </button>
             </div>
           </div>
         </div>

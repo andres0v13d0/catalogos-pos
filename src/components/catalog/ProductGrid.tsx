@@ -15,6 +15,7 @@ import { buildWhatsAppMessage, getWhatsAppUrl, CustomerData } from "@/lib/whatsa
 import CheckoutModal from "./CheckoutModal";
 import { useCatalogCart } from "@/hooks/useCatalogCart";
 import { Product, CatalogData, BodegaData, CartItem } from "@/types/catalog";
+import ErrorToast from "@/components/ui/ErrorToast";
 
 const ITEMS_PER_LOAD = 20;
 
@@ -533,7 +534,6 @@ export default function ProductGrid({ shortId, initialProducts, allProductIds, c
           onUpdateCart={setCart}
           requiresCheckout={catalogData?.requiresCheckout}
           creatingOrder={creatingOrder}
-          error={orderError}
         />
       )}
 
@@ -543,7 +543,6 @@ export default function ProductGrid({ shortId, initialProducts, allProductIds, c
           onClose={() => { setShowCheckout(false); setOrderError(null); orderAttemptIdRef.current = null; }}
           onConfirm={handleOrder}
           creatingOrder={creatingOrder}
-          error={orderError}
         />
       )}
 
@@ -569,6 +568,8 @@ export default function ProductGrid({ shortId, initialProducts, allProductIds, c
           </div>
         </div>
       )}
+      {/* Error toast — aparece sobre toda la pantalla */}
+      <ErrorToast message={orderError} onDismiss={() => setOrderError(null)} />
     </>
   );
 }
