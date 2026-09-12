@@ -47,7 +47,7 @@ function ExpandedCardInline({
   return (
     <div ref={ref} className="my-2" style={{ animation: "cardExpand 0.3s cubic-bezier(0.34,1.56,0.64,1) forwards", transformOrigin: "top center" }}>
       <ProductCard product={product} {...cardProps} />
-      <button onClick={onClose} className="mx-auto mt-2 mb-1 flex items-center rounded-full overflow-hidden transition-all hover:-translate-y-0.5 cursor-pointer" style={{ background: "#fa7e17" }}>
+      <button onClick={onClose} className="mx-auto mt-2 mb-1 flex items-center rounded-full overflow-hidden transition-all hover:-translate-y-0.5 cursor-pointer" style={{ background: "var(--color-grid-collapse-btn)" }}>
         <span className="w-7 h-7 flex items-center justify-center rounded-full" style={{ background: "#e06a0e" }}>
           <FiChevronUp size={14} color="white" />
         </span>
@@ -511,7 +511,7 @@ export default function ProductGrid({ shortId, initialProducts, allProductIds, c
 
         {loadingMore && (
           <div className="flex justify-center py-6">
-            <div className="w-8 h-8 border-2 border-orange-400 border-t-transparent rounded-full animate-spin" />
+            <div className="w-8 h-8 border-2 border-[var(--color-spinner)] border-t-transparent rounded-full animate-spin" />
           </div>
         )}
       </div>
@@ -550,7 +550,7 @@ export default function ProductGrid({ shortId, initialProducts, allProductIds, c
       {pendingWhatsApp && (
         <div className="fixed inset-0 z-[1100] flex items-center justify-center px-6" style={{ background: "rgba(0,0,0,0.55)" }}>
           <div className="bg-white rounded-3xl shadow-2xl p-7 w-full max-w-sm text-center">
-            <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: "linear-gradient(135deg,#25d366,#1ea952)" }}>
+            <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: "var(--color-floating-cart-btn)" }}>
               <FaWhatsapp className="w-8 h-8 text-white" />
             </div>
             <h3 className="text-xl font-bold text-gray-800 mb-1">¡Pedido listo!</h3>
@@ -561,7 +561,7 @@ export default function ProductGrid({ shortId, initialProducts, allProductIds, c
               rel="noopener noreferrer"
               onClick={() => setPendingWhatsApp(null)}
               className="block w-full text-white py-4 rounded-2xl text-base font-bold text-center no-underline"
-              style={{ background: "linear-gradient(135deg,#25d366,#128C7E)", boxShadow: "0 4px 16px rgba(37,211,102,0.35)" }}
+              style={{ background: "var(--color-cart-confirm-btn)", boxShadow: "0 4px 16px rgba(37,211,102,0.35)" }}
             >
               Abrir WhatsApp
             </a>

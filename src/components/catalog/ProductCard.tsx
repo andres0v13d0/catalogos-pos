@@ -192,7 +192,7 @@ export default function ProductCard({
   })();
 
   return (
-    <div className={`bg-white rounded-xl overflow-hidden flex flex-col transition-all duration-200 hover:-translate-y-1 ${isSelected ? "ring-[3px] ring-orange-400 shadow-orange-100" : "shadow-md hover:shadow-xl"}`}>
+    <div className={`bg-[var(--color-card-bg)] rounded-xl overflow-hidden flex flex-col transition-all duration-200 hover:-translate-y-1 ${isSelected ? "ring-[3px] ring-[var(--color-card-select-ring)] shadow-orange-100" : "shadow-md hover:shadow-xl"}`}>
       {/* Image */}
       <div className="relative w-full bg-gray-100">
         {(() => {
@@ -211,7 +211,7 @@ export default function ProductCard({
           </button>
         )}
         {isSelected && (
-          <div className="absolute top-2 right-2 w-7 h-7 bg-orange-400 rounded-full flex items-center justify-center shadow-md">
+          <div className="absolute top-2 right-2 w-7 h-7 bg-[var(--color-card-check)] rounded-full flex items-center justify-center shadow-md">
             <FiCheck className="w-4 h-4 text-white" />
           </div>
         )}
@@ -219,12 +219,12 @@ export default function ProductCard({
 
       {/* Info */}
       <div className="flex flex-col flex-1">
-        <h3 className="px-4 pt-3 pb-1 text-center text-base font-semibold text-gray-800 leading-snug">{product.name}</h3>
+        <h3 className="px-4 pt-3 pb-1 text-center text-base font-semibold text-[var(--color-text-primary)] leading-snug">{product.name}</h3>
         {product.description && (
-          <p className="px-4 pb-2 text-center text-sm text-gray-500 leading-relaxed line-clamp-3">{product.description}</p>
+          <p className="px-4 pb-2 text-center text-sm text-[var(--color-text-secondary)] leading-relaxed line-clamp-3">{product.description}</p>
         )}
         {(price > 0 || hasCombinations) && (
-          <p className="px-4 pb-2 text-center text-xl font-bold text-green-600">
+          <p className="px-4 pb-2 text-center text-xl font-bold text-[var(--color-price)]">
             {typeof displayPrice === "object"
               ? `${Math.round(displayPrice.min).toLocaleString("es-CO")} - ${Math.round(displayPrice.max).toLocaleString("es-CO")}`
               : `${Math.round(displayPrice).toLocaleString("es-CO")}`}
@@ -265,7 +265,7 @@ export default function ProductCard({
                 }}
               />
               {isSelected && (
-                <button onClick={(e) => { e.stopPropagation(); onToggle(); }} className="w-8 h-8 bg-red-500 text-white rounded-lg flex items-center justify-center hover:bg-red-600 transition-colors flex-shrink-0 cursor-pointer">
+                <button onClick={(e) => { e.stopPropagation(); onToggle(); }} className="w-8 h-8 bg-[var(--color-card-delete-btn)] text-white rounded-lg flex items-center justify-center hover:bg-red-600 transition-colors flex-shrink-0 cursor-pointer">
                   <FiX size={14} />
                 </button>
               )}

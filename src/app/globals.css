@@ -5,6 +5,35 @@
   --color-foreground: #171717;
 }
 
+:root {
+  /* Personalización de colores del catálogo — fallbacks = diseño actual.
+     En Fase 3 estos valores se sobreescriben en runtime desde catalog.theme. */
+  --color-text-primary: #1f2937;
+  --color-text-secondary: #6b7280;
+  --color-header-bg: #ffffff;
+  --color-search-bg: #f3f4f6;
+  --color-search-focus: #fb923c;
+  --color-category-active-bg: #fb923c;
+  --color-category-active-text: #ffffff;
+  --color-card-bg: #ffffff;
+  --color-card-select-ring: #fb923c;
+  --color-card-check: #fb923c;
+  --color-card-input-focus: #fb923c;
+  --color-price: #16a34a;
+  --color-card-delete-btn: #ef4444;
+  --color-cart-bg: #ffffff;
+  --color-cart-confirm-btn: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  --color-cart-remove-item-btn-bg: #fef2f2;
+  --color-cart-remove-item-btn-text: #f87171;
+  --color-floating-cart-btn: linear-gradient(135deg, #25d366, #1ea952);
+  --color-header-whatsapp-btn: linear-gradient(135deg, #25D366, #128C7E);
+  --color-checkout-input-focus: #fb923c;
+  --color-checkout-error: #f87171;
+  --color-checkout-submit-btn: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  --color-spinner: #fb923c;
+  --color-grid-collapse-btn: #fa7e17;
+}
+
 body {
   background: #f0f2f5;
   color: var(--color-foreground);

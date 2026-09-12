@@ -19,7 +19,7 @@ export default function ProductCardSimple({ product, onClick, priceDisplay }: Pr
   return (
     <div
       onClick={onClick}
-      className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer"
+      className="bg-[var(--color-card-bg)] rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer"
     >
       <div className="relative w-full aspect-[5/6]">
         {product.imageUrl ? (
@@ -38,11 +38,11 @@ export default function ProductCardSimple({ product, onClick, priceDisplay }: Pr
         )}
       </div>
       <div className="p-2">
-        <h3 className="text-xs font-medium text-gray-800 leading-tight line-clamp-2 mb-1">
+        <h3 className="text-xs font-medium text-[var(--color-text-primary)] leading-tight line-clamp-2 mb-1">
           {product.name}
         </h3>
         {price > 0 && (
-          <p className="text-sm font-bold text-green-600">
+          <p className="text-sm font-bold text-[var(--color-price)]">
             {Math.round(price).toLocaleString("es-CO")}
           </p>
         )}

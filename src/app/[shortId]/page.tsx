@@ -2,6 +2,7 @@ import { getCatalogProductIds, getProductPreviews } from "@/lib/api";
 import { ProductGridSkeleton } from "@/components/ui/Skeleton";
 import { Suspense } from "react";
 import ProductGrid from "@/components/catalog/ProductGrid";
+import ThemeRoot from "@/components/catalog/ThemeRoot";
 import { Product } from "@/types/catalog";
 import type { Metadata } from "next";
 
@@ -73,13 +74,7 @@ export default async function CatalogPage({ params }: PageProps) {
   }
 
   return (
-    <div
-      className="min-h-screen"
-      style={{
-        fontFamily: "Ubuntu, sans-serif",
-        background: "#f0f2f5 url(/background.jpg) center/cover fixed",
-      }}
-    >
+    <ThemeRoot initialTheme={catalog.theme}>
       <style>{`
         @keyframes pulseWA {
           0%,100% { transform:scale(1); box-shadow:0 6px 24px rgba(37,211,102,0.4); }
@@ -105,6 +100,6 @@ export default async function CatalogPage({ params }: PageProps) {
           bodega={bodega}
         />
       </Suspense>
-    </div>
+    </ThemeRoot>
   );
 }

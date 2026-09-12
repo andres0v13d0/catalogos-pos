@@ -19,7 +19,7 @@ export default function CategoryNav({ categories, activeId, onSelect }: Category
         onClick={() => onSelect(null)}
         className={`flex-shrink-0 px-4 md:px-5 py-1.5 md:py-2 rounded-full text-sm md:text-base font-medium transition-all cursor-pointer ${
           activeId === null
-            ? "bg-orange-400 text-white shadow-sm"
+            ? "bg-[var(--color-category-active-bg)] text-[var(--color-category-active-text)] shadow-sm"
             : "bg-white text-gray-600 border border-gray-200 hover:border-orange-300"
         }`}
       >
@@ -31,7 +31,7 @@ export default function CategoryNav({ categories, activeId, onSelect }: Category
           onClick={() => onSelect(cat.id)}
           className={`flex-shrink-0 px-4 md:px-5 py-1.5 md:py-2 rounded-full text-sm md:text-base font-medium transition-all cursor-pointer ${
             activeId === cat.id
-              ? "bg-orange-400 text-white shadow-sm"
+              ? "bg-[var(--color-category-active-bg)] text-[var(--color-category-active-text)] shadow-sm"
               : "bg-white text-gray-600 border border-gray-200 hover:border-orange-300"
           }`}
         >

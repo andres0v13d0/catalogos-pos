@@ -170,7 +170,7 @@ export default function VariantSelector({
     });
   };
 
-  const selectClass = "w-full px-3 py-2 border-2 border-gray-200 rounded-lg text-sm focus:outline-none focus:border-orange-400 transition-colors bg-white text-gray-800 appearance-none cursor-pointer";
+  const selectClass = "w-full px-3 py-2 border-2 border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[var(--color-card-input-focus)] transition-colors bg-white text-gray-800 appearance-none cursor-pointer";
 
   const filledRows = rows.filter((r) =>
     variantOptions.some((v) => r.selections[v.variantId]) || r.quantity
@@ -228,7 +228,7 @@ export default function VariantSelector({
               {hasMultipleFilledRows && !isEmpty && (
                 <button
                   onClick={(e) => { e.stopPropagation(); handleRemove(row.id); }}
-                  className="w-8 h-8 bg-red-500 text-white rounded-lg flex items-center justify-center hover:bg-red-600 transition-colors flex-shrink-0 cursor-pointer"
+                  className="w-8 h-8 bg-[var(--color-card-delete-btn)] text-white rounded-lg flex items-center justify-center hover:bg-red-600 transition-colors flex-shrink-0 cursor-pointer"
                 >
                   <FiX size={14} />
                 </button>

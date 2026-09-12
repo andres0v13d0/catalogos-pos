@@ -47,6 +47,7 @@ export interface CatalogData {
   layout?: "default" | "2col" | "shopify";
   priceDisplay?: "price" | "price2" | "price3" | null;
   categories?: CatalogCategory[];
+  theme?: Record<string, string> | null;
 }
 
 export interface BodegaData {

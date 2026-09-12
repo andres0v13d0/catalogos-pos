@@ -76,10 +76,10 @@ export default function CheckoutModal({ onClose, onConfirm, creatingOrder }: Che
   };
 
   const inputClass = (field: string) =>
-    `w-full border rounded-xl px-4 py-3 text-sm text-gray-900 placeholder-gray-400 focus:outline-none transition-all ${errors[field] ? "border-red-400 bg-red-50" : "border-gray-200 bg-white focus:border-orange-400"}`;
+    `w-full border rounded-xl px-4 py-3 text-sm text-gray-900 placeholder-gray-400 focus:outline-none transition-all ${errors[field] ? "border-[var(--color-checkout-error)] bg-red-50" : "border-gray-200 bg-white focus:border-[var(--color-checkout-input-focus)]"}`;
 
   const selectClass = (field: string) =>
-    `w-full border rounded-xl px-4 py-3 text-sm focus:outline-none transition-all appearance-none bg-white text-gray-800 cursor-pointer ${errors[field] ? "border-red-400 bg-red-50" : "border-gray-200 focus:border-orange-400"}`;
+    `w-full border rounded-xl px-4 py-3 text-sm focus:outline-none transition-all appearance-none bg-white text-gray-800 cursor-pointer ${errors[field] ? "border-[var(--color-checkout-error)] bg-red-50" : "border-gray-200 focus:border-[var(--color-checkout-input-focus)]"}`;
 
   return (
     <>
@@ -150,7 +150,7 @@ export default function CheckoutModal({ onClose, onConfirm, creatingOrder }: Che
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1.5">Notas adicionales</label>
-                <textarea value={form.notes} onChange={(e) => set("notes", e.target.value)} placeholder="Instrucciones especiales, referencias, etc." rows={2} className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-900 placeholder-gray-400 bg-white focus:outline-none focus:border-orange-400 transition-all resize-none" />
+                <textarea value={form.notes} onChange={(e) => set("notes", e.target.value)} placeholder="Instrucciones especiales, referencias, etc." rows={2} className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-900 placeholder-gray-400 bg-white focus:outline-none focus:border-[var(--color-checkout-input-focus)] transition-all resize-none" />
               </div>
             </div>
 
@@ -160,7 +160,7 @@ export default function CheckoutModal({ onClose, onConfirm, creatingOrder }: Che
                 onClick={handleSubmit}
                 disabled={creatingOrder}
                 className="w-full text-white py-4 rounded-2xl text-base font-bold flex items-center justify-center gap-3 transition-all disabled:opacity-70 cursor-pointer"
-                style={{ background: "linear-gradient(135deg, #25D366 0%, #128C7E 100%)", boxShadow: "0 4px 16px rgba(37,211,102,0.3)" }}
+                style={{ background: "var(--color-checkout-submit-btn)", boxShadow: "0 4px 16px rgba(37,211,102,0.3)" }}
               >
                 {creatingOrder ? <AiOutlineLoading3Quarters className="w-5 h-5 animate-spin" /> : <FaWhatsapp className="w-5 h-5" />}
                 {creatingOrder ? "Procesando..." : "Confirmar y enviar por WhatsApp"}
@@ -250,7 +250,7 @@ export default function CheckoutModal({ onClose, onConfirm, creatingOrder }: Che
                 {/* Notas — full width */}
                 <div className="col-span-2">
                   <label className="block text-sm font-medium text-gray-700 mb-1.5">Notas adicionales</label>
-                  <textarea value={form.notes} onChange={(e) => set("notes", e.target.value)} placeholder="Instrucciones especiales, referencias, etc." rows={3} className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-900 placeholder-gray-400 bg-white focus:outline-none focus:border-orange-400 transition-all resize-none" />
+                  <textarea value={form.notes} onChange={(e) => set("notes", e.target.value)} placeholder="Instrucciones especiales, referencias, etc." rows={3} className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-900 placeholder-gray-400 bg-white focus:outline-none focus:border-[var(--color-checkout-input-focus)] transition-all resize-none" />
                 </div>
               </div>
             </div>
@@ -261,7 +261,7 @@ export default function CheckoutModal({ onClose, onConfirm, creatingOrder }: Che
                 onClick={handleSubmit}
                 disabled={creatingOrder}
                 className="px-8 py-3.5 rounded-2xl text-base font-bold flex items-center justify-center gap-3 text-white transition-all disabled:opacity-70 cursor-pointer hover:-translate-y-0.5"
-                style={{ background: "linear-gradient(135deg, #25D366 0%, #128C7E 100%)", boxShadow: "0 4px 16px rgba(37,211,102,0.3)" }}
+                style={{ background: "var(--color-checkout-submit-btn)", boxShadow: "0 4px 16px rgba(37,211,102,0.3)" }}
               >
                 {creatingOrder ? <AiOutlineLoading3Quarters className="w-5 h-5 animate-spin" /> : <FaWhatsapp className="w-5 h-5" />}
                 {creatingOrder ? "Procesando..." : "Confirmar y enviar por WhatsApp"}

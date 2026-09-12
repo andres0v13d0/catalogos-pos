@@ -50,7 +50,7 @@ export default function CatalogDesktopHeader({
       </div>
 
       {/* Barra info: logo superpuesto + nombre + search + WA */}
-      <div className="bg-white shadow-sm border-b border-gray-200">
+      <div className="bg-[var(--color-header-bg)] shadow-sm border-b border-gray-200">
         <div className="max-w-screen-xl mx-auto px-6 flex items-center gap-5 py-3">
           {/* Logo superpuesto — se sube sobre el banner con -mt-12 */}
           <div className="flex-shrink-0 -mt-12 relative z-10">
@@ -76,7 +76,7 @@ export default function CatalogDesktopHeader({
 
           {/* Search bar */}
           <div className="flex-1 max-w-lg mx-4">
-            <div className="relative flex items-center bg-gray-100 rounded-full focus-within:bg-white focus-within:ring-2 focus-within:ring-orange-400 transition-all">
+            <div className="relative flex items-center bg-[var(--color-search-bg)] rounded-full focus-within:bg-white focus-within:ring-2 focus-within:ring-[var(--color-search-focus)] transition-all">
               <FiSearch size={15} className="absolute left-4 text-gray-400 pointer-events-none" />
               <input
                 type="text"
@@ -103,7 +103,7 @@ export default function CatalogDesktopHeader({
               target="_blank"
               rel="noopener noreferrer"
               className="flex-shrink-0 flex items-center gap-2 px-5 py-2.5 rounded-full text-white font-semibold text-sm no-underline transition-all hover:-translate-y-0.5 cursor-pointer"
-              style={{ background: "linear-gradient(135deg,#25D366,#128C7E)", boxShadow: "0 3px 12px rgba(37,211,102,0.35)" }}
+              style={{ background: "var(--color-header-whatsapp-btn)", boxShadow: "0 3px 12px rgba(37,211,102,0.35)" }}
             >
               <FaWhatsapp size={18} />
               Contactar
@@ -114,7 +114,7 @@ export default function CatalogDesktopHeader({
 
       {/* Categorías - Desktop */}
       {categories?.length > 0 && (
-        <div className="bg-white border-b border-gray-200">
+        <div className="bg-[var(--color-header-bg)] border-b border-gray-200">
           <div className="max-w-screen-xl mx-auto px-6">
             <CategoryNav categories={categories} activeId={activeCategoryId} onSelect={onCategorySelect} />
           </div>

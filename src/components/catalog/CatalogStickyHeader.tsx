@@ -38,7 +38,7 @@ export default function CatalogStickyHeader({
 }: CatalogStickyHeaderProps) {
   return (
     <div
-      className={`fixed top-0 left-0 right-0 bg-white shadow-md z-[1000] md:hidden transition-transform duration-300 ${
+      className={`fixed top-0 left-0 right-0 bg-[var(--color-header-bg)] shadow-md z-[1000] md:hidden transition-transform duration-300 ${
         visible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
@@ -68,7 +68,7 @@ export default function CatalogStickyHeader({
             target="_blank"
             rel="noopener noreferrer"
             className="w-9 h-9 rounded-full flex items-center justify-center text-white cursor-pointer"
-            style={{ background: "linear-gradient(135deg,#25D366,#128C7E)" }}
+            style={{ background: "var(--color-header-whatsapp-btn)" }}
           >
             <FaWhatsapp size={18} />
           </a>
@@ -84,7 +84,7 @@ export default function CatalogStickyHeader({
               value={searchInput}
               onChange={(e) => onSearchChange(e.target.value)}
               autoFocus
-              className="w-full pl-9 pr-9 py-2.5 bg-gray-50 rounded-xl border-2 border-gray-200 focus:border-orange-400 focus:outline-none text-sm text-gray-900 placeholder-gray-400"
+              className="w-full pl-9 pr-9 py-2.5 bg-[var(--color-search-bg)] rounded-xl border-2 border-gray-200 focus:border-[var(--color-search-focus)] focus:outline-none text-sm text-gray-900 placeholder-gray-400"
             />
             {searchInput && (
               <button

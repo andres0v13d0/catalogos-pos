@@ -50,7 +50,7 @@ export default function CartModal({ cart, onClose, onConfirm, onUpdateCart, requ
               : <MdImage className="w-6 h-6 text-gray-300" />}
           </div>
           <div className="flex-1 min-w-0">
-            <p className="font-semibold text-gray-800 text-sm truncate">{item.productName}</p>
+            <p className="font-semibold text-[var(--color-text-primary)] text-sm truncate">{item.productName}</p>
             {item.variantOptions?.length > 0 && (
               <p className="text-xs text-gray-500 mt-0.5">
                 {item.variantOptions.map((v) => `${v.variantName}: ${v.optionValue}`).join(", ")}
@@ -63,13 +63,13 @@ export default function CartModal({ cart, onClose, onConfirm, onUpdateCart, requ
                 <button onClick={() => updateQty(idx, item.quantity + 1)} className="w-7 h-7 flex items-center justify-center text-gray-500 hover:bg-gray-100 text-lg cursor-pointer">+</button>
               </div>
               {item.unitPrice > 0 && (
-                <span className="font-bold text-gray-800 text-sm">
+                <span className="font-bold text-[var(--color-price)] text-sm">
                   ${Math.round((parseFloat(String(item.unitPrice)) || 0) * item.quantity).toLocaleString("es-CO")}
                 </span>
               )}
             </div>
           </div>
-          <button onClick={() => removeItem(idx)} className="w-8 h-8 rounded-lg bg-red-50 text-red-400 flex items-center justify-center hover:bg-red-100 flex-shrink-0 self-start cursor-pointer">
+          <button onClick={() => removeItem(idx)} className="w-8 h-8 rounded-lg bg-[var(--color-cart-remove-item-btn-bg)] text-[var(--color-cart-remove-item-btn-text)] flex items-center justify-center hover:bg-red-100 flex-shrink-0 self-start cursor-pointer">
             <FiTrash2 className="w-3.5 h-3.5" />
           </button>
         </div>
@@ -82,14 +82,14 @@ export default function CartModal({ cart, onClose, onConfirm, onUpdateCart, requ
       {total > 0 && (
         <div className="flex justify-between items-center mb-3">
           <span className="text-gray-600 font-medium">Total estimado:</span>
-          <span className="text-xl font-bold text-gray-900">${total.toLocaleString("es-CO")}</span>
+          <span className="text-xl font-bold text-[var(--color-price)]">${total.toLocaleString("es-CO")}</span>
         </div>
       )}
       <button
         onClick={onConfirm}
         disabled={creatingOrder}
         className={`${fullWidth ? "w-full" : "w-full"} text-white py-4 rounded-2xl text-base font-bold flex items-center justify-center gap-3 transition-all disabled:opacity-70 cursor-pointer`}
-        style={{ background: "linear-gradient(135deg, #25D366 0%, #128C7E 100%)", boxShadow: "0 4px 16px rgba(37,211,102,0.3)" }}
+        style={{ background: "var(--color-cart-confirm-btn)", boxShadow: "0 4px 16px rgba(37,211,102,0.3)" }}
       >
         <FaWhatsapp className="w-5 h-5" />
         {creatingOrder ? "Procesando..." : requiresCheckout ? "Continuar con mis datos" : "Enviar pedido por WhatsApp"}
@@ -107,7 +107,7 @@ export default function CartModal({ cart, onClose, onConfirm, onUpdateCart, requ
           onClick={handleClose}
         >
           <div
-            className={`fixed bottom-0 left-0 right-0 bg-white rounded-t-3xl shadow-2xl flex flex-col transition-all duration-300 ${visible ? "translate-y-0" : "translate-y-full"}`}
+            className={`fixed bottom-0 left-0 right-0 bg-[var(--color-cart-bg)] rounded-t-3xl shadow-2xl flex flex-col transition-all duration-300 ${visible ? "translate-y-0" : "translate-y-full"}`}
             style={{ maxHeight: "85vh" }}
             onClick={(e) => e.stopPropagation()}
           >
@@ -134,7 +134,7 @@ export default function CartModal({ cart, onClose, onConfirm, onUpdateCart, requ
         />
         {/* Panel */}
         <div
-          className={`fixed top-0 right-0 bottom-0 z-50 bg-white shadow-2xl flex flex-col transition-transform duration-300 ease-out ${visible ? "translate-x-0" : "translate-x-full"}`}
+          className={`fixed top-0 right-0 bottom-0 z-50 bg-[var(--color-cart-bg)] shadow-2xl flex flex-col transition-transform duration-300 ease-out ${visible ? "translate-x-0" : "translate-x-full"}`}
           style={{ width: "420px", maxWidth: "100vw" }}
           onClick={(e) => e.stopPropagation()}
         >
