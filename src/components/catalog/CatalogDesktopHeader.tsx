@@ -70,8 +70,8 @@ export default function CatalogDesktopHeader({
 
           {/* Nombre y descripción */}
           <div className="flex flex-col min-w-0">
-            <h1 className="text-xl font-bold text-gray-900 truncate">{title}</h1>
-            {description && <p className="text-sm text-gray-500 truncate">{description}</p>}
+            <h1 className="text-xl font-bold text-[var(--color-store-name)] truncate">{title}</h1>
+            {description && <p className="text-sm text-[var(--color-store-desc)] truncate">{description}</p>}
           </div>
 
           {/* Search bar */}
@@ -83,7 +83,7 @@ export default function CatalogDesktopHeader({
                 placeholder="Buscar productos..."
                 value={searchInput}
                 onChange={(e) => onSearchChange(e.target.value)}
-                className="w-full pl-10 pr-10 py-2.5 bg-transparent border-none outline-none text-sm text-gray-900 placeholder-gray-400"
+                className="w-full pl-10 pr-10 py-2.5 bg-transparent border-none outline-none text-sm text-[var(--color-search-text)] placeholder:text-[var(--color-search-placeholder)]"
               />
               {searchInput && (
                 <button
@@ -102,7 +102,7 @@ export default function CatalogDesktopHeader({
               href={`https://wa.me/${whatsappNumber.replace(/\D/g, "")}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-shrink-0 flex items-center gap-2 px-5 py-2.5 rounded-full text-white font-semibold text-sm no-underline transition-all hover:-translate-y-0.5 cursor-pointer"
+              className="flex-shrink-0 flex items-center gap-2 px-5 py-2.5 rounded-full text-[var(--color-header-whatsapp-btn-text)] font-semibold text-sm no-underline transition-all hover:-translate-y-0.5 cursor-pointer"
               style={{ background: "var(--color-header-whatsapp-btn)", boxShadow: "0 3px 12px rgba(37,211,102,0.35)" }}
             >
               <FaWhatsapp size={18} />

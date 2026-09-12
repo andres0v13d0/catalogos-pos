@@ -30,7 +30,7 @@ export default function CatalogSearchBar({
             placeholder="Buscar productos..."
             value={searchInput}
             onChange={(e) => onSearchChange(e.target.value)}
-            className="w-full pl-10 md:pl-12 pr-10 md:pr-12 py-3 md:py-2.5 bg-[var(--color-search-bg)] md:bg-white rounded-xl md:rounded-lg border-2 border-transparent text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[var(--color-search-focus)] focus:bg-white md:focus:bg-white transition-all"
+            className="w-full pl-10 md:pl-12 pr-10 md:pr-12 py-3 md:py-2.5 bg-[var(--color-search-bg)] md:bg-white rounded-xl md:rounded-lg border-2 border-transparent text-sm text-[var(--color-search-text)] placeholder:text-[var(--color-search-placeholder)] focus:outline-none focus:border-[var(--color-search-focus)] focus:bg-white md:focus:bg-white transition-all"
           />
           {searchInput && (
             <button

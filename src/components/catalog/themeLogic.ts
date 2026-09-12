@@ -27,10 +27,51 @@ export const THEME_KEY_TO_CSS_VAR: Record<string, string> = {
   floatingCartBtn: "--color-floating-cart-btn",
   headerWhatsappBtn: "--color-header-whatsapp-btn",
   checkoutInputFocus: "--color-checkout-input-focus",
-  checkoutError: "--color-checkout-error",
+  checkoutErrorBorder: "--color-checkout-error-border",
   checkoutSubmitBtn: "--color-checkout-submit-btn",
   spinnerColor: "--color-spinner",
   gridCollapseBtn: "--color-grid-collapse-btn",
+
+  // ── Fase 5: Header ──
+  storeNameColor: "--color-store-name",
+  storeDescColor: "--color-store-desc",
+  searchText: "--color-search-text",
+  searchPlaceholder: "--color-search-placeholder",
+  headerWhatsappBtnText: "--color-header-whatsapp-btn-text",
+
+  // ── Fase 5: Navbar ──
+  navbarBg: "--color-navbar-bg",
+  categoryInactiveBg: "--color-category-inactive-bg",
+  categoryInactiveText: "--color-category-inactive-text",
+  categoryInactiveBorder: "--color-category-inactive-border",
+
+  // ── Fase 5: Tarjeta ──
+  cardImageBg: "--color-card-image-bg",
+  cardCheckIcon: "--color-card-check-icon",
+  cardSubzoneBg: "--color-card-subzone-bg",
+  cardSubzoneLabel: "--color-card-subzone-label",
+  cardInputBg: "--color-card-input-bg",
+  cardSuccessBg: "--color-card-success-bg",
+  cardSuccessBorder: "--color-card-success-border",
+  cardErrorBg: "--color-card-error-bg",
+  cardErrorBorder: "--color-card-error-border",
+  cardDeleteBtnIcon: "--color-card-delete-btn-icon",
+
+  // ── Fase 5: Carrito ──
+  floatingCartBtnText: "--color-floating-cart-btn-text",
+  cartPreviewBg: "--color-cart-preview-bg",
+  cartItemBg: "--color-cart-item-bg",
+  cartConfirmBtnText: "--color-cart-confirm-btn-text",
+
+  // ── Fase 5: Checkout ──
+  checkoutBg: "--color-checkout-bg",
+  checkoutInputBg: "--color-checkout-input-bg",
+  checkoutInputBorder: "--color-checkout-input-border",
+  checkoutInputText: "--color-checkout-input-text",
+  checkoutInputPlaceholder: "--color-checkout-input-placeholder",
+  checkoutErrorBg: "--color-checkout-error-bg",
+  checkoutErrorText: "--color-checkout-error-text",
+  checkoutSubmitBtnText: "--color-checkout-submit-btn-text",
 };
 
 export const DEFAULT_BACKGROUND = "#f0f2f5 url(/background.jpg) center/cover fixed";

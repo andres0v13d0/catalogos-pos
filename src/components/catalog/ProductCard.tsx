@@ -194,7 +194,7 @@ export default function ProductCard({
   return (
     <div className={`bg-[var(--color-card-bg)] rounded-xl overflow-hidden flex flex-col transition-all duration-200 hover:-translate-y-1 ${isSelected ? "ring-[3px] ring-[var(--color-card-select-ring)] shadow-orange-100" : "shadow-md hover:shadow-xl"}`}>
       {/* Image */}
-      <div className="relative w-full bg-gray-100">
+      <div className="relative w-full bg-[var(--color-card-image-bg)]">
         {(() => {
           const allImages = [product.imageUrl, ...(product.images || [])].filter(Boolean) as string[];
           if (allImages.length > 1) return <ImageCarousel images={allImages} productName={product.name} />;
@@ -212,7 +212,7 @@ export default function ProductCard({
         )}
         {isSelected && (
           <div className="absolute top-2 right-2 w-7 h-7 bg-[var(--color-card-check)] rounded-full flex items-center justify-center shadow-md">
-            <FiCheck className="w-4 h-4 text-white" />
+            <FiCheck className="w-4 h-4 text-[var(--color-card-check-icon)]" />
           </div>
         )}
       </div>
@@ -244,9 +244,9 @@ export default function ProductCard({
 
         {/* Simple quantity selector */}
         {!hasVariants && (
-          <div className="p-3 bg-gray-50 border-t-2 border-gray-200" onClick={(e) => e.stopPropagation()}>
-            <label className="block text-xs font-semibold text-gray-600 mb-1">Cantidad:</label>
-            <div className={`grid gap-2 items-center p-3 rounded-xl border-2 transition-all ${isSelected ? "border-green-400 bg-green-50" : "border-gray-200 bg-white hover:border-orange-300"}`} style={{ gridTemplateColumns: isSelected ? "1fr 32px" : "1fr" }}>
+          <div className="p-3 bg-[var(--color-card-subzone-bg)] border-t-2 border-gray-200" onClick={(e) => e.stopPropagation()}>
+            <label className="block text-xs font-semibold text-[var(--color-card-subzone-label)] mb-1">Cantidad:</label>
+            <div className={`grid gap-2 items-center p-3 rounded-xl border-2 transition-all ${isSelected ? "border-[var(--color-card-success-border)] bg-[var(--color-card-success-bg)]" : "border-gray-200 bg-[var(--color-card-input-bg)] hover:border-orange-300"}`} style={{ gridTemplateColumns: isSelected ? "1fr 32px" : "1fr" }}>
               <QuantitySelector
                 value={qty}
                 onChange={(val) => {
@@ -265,7 +265,7 @@ export default function ProductCard({
                 }}
               />
               {isSelected && (
-                <button onClick={(e) => { e.stopPropagation(); onToggle(); }} className="w-8 h-8 bg-[var(--color-card-delete-btn)] text-white rounded-lg flex items-center justify-center hover:bg-red-600 transition-colors flex-shrink-0 cursor-pointer">
+                <button onClick={(e) => { e.stopPropagation(); onToggle(); }} className="w-8 h-8 bg-[var(--color-card-delete-btn)] text-[var(--color-card-delete-btn-icon)] rounded-lg flex items-center justify-center hover:bg-red-600 transition-colors flex-shrink-0 cursor-pointer">
                   <FiX size={14} />
                 </button>
               )}

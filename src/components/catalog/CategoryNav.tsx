@@ -12,7 +12,7 @@ export default function CategoryNav({ categories, activeId, onSelect }: Category
 
   return (
     <div
-      className="flex gap-2 overflow-x-auto px-3 md:px-4 py-2 md:py-2.5"
+      className="flex gap-2 overflow-x-auto px-3 md:px-4 py-2 md:py-2.5 bg-[var(--color-navbar-bg)]"
       style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
     >
       <button
@@ -20,7 +20,7 @@ export default function CategoryNav({ categories, activeId, onSelect }: Category
         className={`flex-shrink-0 px-4 md:px-5 py-1.5 md:py-2 rounded-full text-sm md:text-base font-medium transition-all cursor-pointer ${
           activeId === null
             ? "bg-[var(--color-category-active-bg)] text-[var(--color-category-active-text)] shadow-sm"
-            : "bg-white text-gray-600 border border-gray-200 hover:border-orange-300"
+            : "bg-[var(--color-category-inactive-bg)] text-[var(--color-category-inactive-text)] border border-[var(--color-category-inactive-border)] hover:border-orange-300"
         }`}
       >
         Todos
@@ -32,7 +32,7 @@ export default function CategoryNav({ categories, activeId, onSelect }: Category
           className={`flex-shrink-0 px-4 md:px-5 py-1.5 md:py-2 rounded-full text-sm md:text-base font-medium transition-all cursor-pointer ${
             activeId === cat.id
               ? "bg-[var(--color-category-active-bg)] text-[var(--color-category-active-text)] shadow-sm"
-              : "bg-white text-gray-600 border border-gray-200 hover:border-orange-300"
+              : "bg-[var(--color-category-inactive-bg)] text-[var(--color-category-inactive-text)] border border-[var(--color-category-inactive-border)] hover:border-orange-300"
           }`}
         >
           {cat.name}

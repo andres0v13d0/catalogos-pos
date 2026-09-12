@@ -43,7 +43,7 @@ export default function CartModal({ cart, onClose, onConfirm, onUpdateCart, requ
   const renderItems = () => (
     <div className="flex-1 overflow-y-auto px-4 py-3 space-y-3">
       {cart.map((item, idx) => (
-        <div key={item.cartItemId || `${item.productId}-${idx}`} className="flex gap-3 p-3 rounded-xl border border-gray-100 bg-white">
+        <div key={item.cartItemId || `${item.productId}-${idx}`} className="flex gap-3 p-3 rounded-xl border border-gray-100 bg-[var(--color-cart-item-bg)]">
           <div className="w-14 h-14 rounded-xl overflow-hidden flex-shrink-0 bg-gray-100 flex items-center justify-center relative">
             {item.productImageUrl
               ? <img src={item.productImageUrl} alt={item.productName} width={56} height={56} className="object-cover w-full h-full" />
@@ -88,7 +88,7 @@ export default function CartModal({ cart, onClose, onConfirm, onUpdateCart, requ
       <button
         onClick={onConfirm}
         disabled={creatingOrder}
-        className={`${fullWidth ? "w-full" : "w-full"} text-white py-4 rounded-2xl text-base font-bold flex items-center justify-center gap-3 transition-all disabled:opacity-70 cursor-pointer`}
+        className={`${fullWidth ? "w-full" : "w-full"} text-[var(--color-cart-confirm-btn-text)] py-4 rounded-2xl text-base font-bold flex items-center justify-center gap-3 transition-all disabled:opacity-70 cursor-pointer`}
         style={{ background: "var(--color-cart-confirm-btn)", boxShadow: "0 4px 16px rgba(37,211,102,0.3)" }}
       >
         <FaWhatsapp className="w-5 h-5" />

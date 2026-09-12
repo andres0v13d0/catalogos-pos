@@ -21,7 +21,7 @@ export default function FloatingCartButton({ cart, cartTotal, onOpenCart }: Floa
       <div className="md:hidden fixed bottom-5 left-4 right-4 z-[100]">
         <button
           onClick={onOpenCart}
-          className="wa-pulse w-full text-white border-none rounded-2xl flex items-center gap-3 px-4 py-3 cursor-pointer"
+          className="wa-pulse w-full text-[var(--color-floating-cart-btn-text)] border-none rounded-2xl flex items-center gap-3 px-4 py-3 cursor-pointer"
           style={{ background: "var(--color-floating-cart-btn)", boxShadow: "0 6px 24px rgba(37,211,102,0.4)" }}
         >
           <div className="bg-white/20 rounded-xl p-2 flex items-center justify-center flex-shrink-0">
@@ -42,10 +42,10 @@ export default function FloatingCartButton({ cart, cartTotal, onOpenCart }: Floa
         onMouseLeave={() => setShowCartHover(false)}
       >
         {showCartHover && (
-          <div className="bg-white rounded-2xl shadow-2xl p-4 w-72 mb-2">
+          <div className="bg-[var(--color-cart-preview-bg)] rounded-2xl shadow-2xl p-4 w-72 mb-2">
             <div className="flex justify-between items-center mb-3 pb-3 border-b border-gray-100">
-              <span className="font-bold text-gray-800">Tu pedido</span>
-              <span className="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">{cart.length} productos</span>
+              <span className="font-bold text-[var(--color-text-primary)]">Tu pedido</span>
+              <span className="text-sm text-[var(--color-text-secondary)] bg-gray-100 px-3 py-1 rounded-full">{cart.length} productos</span>
             </div>
             <div className="flex flex-col gap-2 mb-3">
               {cart.slice(0, 4).map((item, i) => (
@@ -54,15 +54,15 @@ export default function FloatingCartButton({ cart, cartTotal, onOpenCart }: Floa
                     ? <img src={item.productImageUrl} alt={item.productName} width={40} height={40} className="object-cover w-10 h-10 rounded-lg flex-shrink-0" />
                     : <div className="w-10 h-10 bg-gray-200 rounded-lg flex-shrink-0" />}
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-semibold text-gray-800 truncate">{item.productName}</p>
-                    <p className="text-xs text-gray-500">x{item.quantity}</p>
+                    <p className="text-sm font-semibold text-[var(--color-text-primary)] truncate">{item.productName}</p>
+                    <p className="text-xs text-[var(--color-text-secondary)]">x{item.quantity}</p>
                   </div>
                   {item.totalPrice > 0 && <span className="text-sm font-bold text-[var(--color-price)]">${item.totalPrice.toLocaleString("es-CO")}</span>}
                 </div>
               ))}
               {cart.length > 4 && <p className="text-center text-xs text-gray-400 italic">+{cart.length - 4} más</p>}
             </div>
-            <div className="flex justify-between items-center pt-3 border-t border-gray-100 font-bold text-gray-800">
+            <div className="flex justify-between items-center pt-3 border-t border-gray-100 font-bold text-[var(--color-text-primary)]">
               <span>Total:</span>
               <span className="text-lg text-[var(--color-price)]">${cartTotal.toLocaleString("es-CO")}</span>
             </div>
@@ -70,7 +70,7 @@ export default function FloatingCartButton({ cart, cartTotal, onOpenCart }: Floa
         )}
         <button
           onClick={onOpenCart}
-          className="wa-pulse flex items-center gap-3 px-5 py-3.5 rounded-full text-white font-bold text-sm border-none cursor-pointer whitespace-nowrap"
+          className="wa-pulse flex items-center gap-3 px-5 py-3.5 rounded-full text-[var(--color-floating-cart-btn-text)] font-bold text-sm border-none cursor-pointer whitespace-nowrap"
           style={{ background: "var(--color-floating-cart-btn)", boxShadow: "0 6px 24px rgba(37,211,102,0.45)" }}
         >
           <FaWhatsapp size={20} />

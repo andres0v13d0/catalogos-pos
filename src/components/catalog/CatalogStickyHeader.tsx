@@ -55,7 +55,7 @@ export default function CatalogStickyHeader({
             </span>
           )}
         </div>
-        <span className="flex-1 font-semibold text-gray-800 truncate text-sm">{title}</span>
+        <span className="flex-1 font-semibold text-[var(--color-store-name)] truncate text-sm">{title}</span>
         <button
           onClick={onToggleSearch}
           className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-gray-200 transition-colors cursor-pointer"
@@ -67,7 +67,7 @@ export default function CatalogStickyHeader({
             href={`https://wa.me/${whatsappNumber.replace(/\D/g, "")}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-9 h-9 rounded-full flex items-center justify-center text-white cursor-pointer"
+            className="w-9 h-9 rounded-full flex items-center justify-center text-[var(--color-header-whatsapp-btn-text)] cursor-pointer"
             style={{ background: "var(--color-header-whatsapp-btn)" }}
           >
             <FaWhatsapp size={18} />
@@ -84,7 +84,7 @@ export default function CatalogStickyHeader({
               value={searchInput}
               onChange={(e) => onSearchChange(e.target.value)}
               autoFocus
-              className="w-full pl-9 pr-9 py-2.5 bg-[var(--color-search-bg)] rounded-xl border-2 border-gray-200 focus:border-[var(--color-search-focus)] focus:outline-none text-sm text-gray-900 placeholder-gray-400"
+              className="w-full pl-9 pr-9 py-2.5 bg-[var(--color-search-bg)] rounded-xl border-2 border-gray-200 focus:border-[var(--color-search-focus)] focus:outline-none text-sm text-[var(--color-search-text)] placeholder:text-[var(--color-search-placeholder)]"
             />
             {searchInput && (
               <button

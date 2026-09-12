@@ -170,7 +170,7 @@ export default function VariantSelector({
     });
   };
 
-  const selectClass = "w-full px-3 py-2 border-2 border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[var(--color-card-input-focus)] transition-colors bg-white text-gray-800 appearance-none cursor-pointer";
+  const selectClass = "w-full px-3 py-2 border-2 border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[var(--color-card-input-focus)] transition-colors bg-[var(--color-card-input-bg)] text-gray-800 appearance-none cursor-pointer";
 
   const filledRows = rows.filter((r) =>
     variantOptions.some((v) => r.selections[v.variantId]) || r.quantity
@@ -178,7 +178,7 @@ export default function VariantSelector({
   const hasMultipleFilledRows = filledRows.length > 1;
 
   return (
-    <div className="p-3 bg-gray-50 border-t-2 border-gray-200" onClick={(e) => e.stopPropagation()}>
+    <div className="p-3 bg-[var(--color-card-subzone-bg)] border-t-2 border-gray-200" onClick={(e) => e.stopPropagation()}>
       <div className="flex flex-col gap-3">
         {rows.map((row) => {
           const allSelected = variantOptions.every((v) => row.selections[v.variantId]);
@@ -195,20 +195,20 @@ export default function VariantSelector({
             <div
               key={row.id}
               className={`grid gap-2 items-end p-3 rounded-xl border-2 transition-all ${
-                comboUnavailable ? "border-red-300 bg-red-50" :
-                isComplete ? "border-green-400 bg-green-50" :
-                "border-gray-200 bg-white hover:border-orange-300"
+                comboUnavailable ? "border-[var(--color-card-error-border)] bg-[var(--color-card-error-bg)]" :
+                isComplete ? "border-[var(--color-card-success-border)] bg-[var(--color-card-success-bg)]" :
+                "border-gray-200 bg-[var(--color-card-input-bg)] hover:border-orange-300"
               }`}
               style={{ gridTemplateColumns: gridCols }}
             >
               {variantOptions.map((v) => (
                 <div key={v.variantId}>
-                  <label className="block text-xs font-semibold text-gray-600 mb-1">{v.variantName}:</label>
+                  <label className="block text-xs font-semibold text-[var(--color-card-subzone-label)] mb-1">{v.variantName}:</label>
                   <select
                     value={row.selections[v.variantId] || ""}
                     onChange={(e) => { e.stopPropagation(); handleChange(row.id, v.variantId, e.target.value); }}
                     onClick={(e) => e.stopPropagation()}
-                    className={`${selectClass} ${!row.selections[v.variantId] && hasPartial ? "border-red-400 bg-red-50" : ""}`}
+                    className={`${selectClass} ${!row.selections[v.variantId] && hasPartial ? "border-[var(--color-card-error-border)] bg-[var(--color-card-error-bg)]" : ""}`}
                   >
                     <option value="">Seleccionar...</option>
                     {v.options.map((opt) => (
@@ -218,17 +218,17 @@ export default function VariantSelector({
                 </div>
               ))}
               <div>
-                <label className="block text-xs font-semibold text-gray-600 mb-1">Cant:</label>
+                <label className="block text-xs font-semibold text-[var(--color-card-subzone-label)] mb-1">Cant:</label>
                 <QuantitySelector
                   value={row.quantity}
                   onChange={(val) => handleChange(row.id, "quantity", val)}
-                  className={!row.quantity && hasPartial ? "border-red-400 bg-red-50" : ""}
+                  className={!row.quantity && hasPartial ? "border-[var(--color-card-error-border)] bg-[var(--color-card-error-bg)]" : ""}
                 />
               </div>
               {hasMultipleFilledRows && !isEmpty && (
                 <button
                   onClick={(e) => { e.stopPropagation(); handleRemove(row.id); }}
-                  className="w-8 h-8 bg-[var(--color-card-delete-btn)] text-white rounded-lg flex items-center justify-center hover:bg-red-600 transition-colors flex-shrink-0 cursor-pointer"
+                  className="w-8 h-8 bg-[var(--color-card-delete-btn)] text-[var(--color-card-delete-btn-icon)] rounded-lg flex items-center justify-center hover:bg-red-600 transition-colors flex-shrink-0 cursor-pointer"
                 >
                   <FiX size={14} />
                 </button>

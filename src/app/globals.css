@@ -7,7 +7,9 @@
 
 :root {
   /* Personalización de colores del catálogo — fallbacks = diseño actual.
-     En Fase 3 estos valores se sobreescriben en runtime desde catalog.theme. */
+     En runtime estos valores se sobreescriben desde catalog.theme. */
+
+  /* ── Fases 2-3 (base) ── */
   --color-text-primary: #1f2937;
   --color-text-secondary: #6b7280;
   --color-header-bg: #ffffff;
@@ -28,10 +30,51 @@
   --color-floating-cart-btn: linear-gradient(135deg, #25d366, #1ea952);
   --color-header-whatsapp-btn: linear-gradient(135deg, #25D366, #128C7E);
   --color-checkout-input-focus: #fb923c;
-  --color-checkout-error: #f87171;
+  --color-checkout-error-border: #f87171; /* renombrado desde --color-checkout-error */
   --color-checkout-submit-btn: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
   --color-spinner: #fb923c;
   --color-grid-collapse-btn: #fa7e17;
+
+  /* ── Fase 5: Header ── */
+  --color-store-name: #111827;
+  --color-store-desc: #6b7280;
+  --color-search-text: #111827;
+  --color-search-placeholder: #9ca3af;
+  --color-header-whatsapp-btn-text: #ffffff;
+
+  /* ── Fase 5: Navbar ── */
+  --color-navbar-bg: transparent;
+  --color-category-inactive-bg: #ffffff;
+  --color-category-inactive-text: #4b5563;
+  --color-category-inactive-border: #e5e7eb;
+
+  /* ── Fase 5: Tarjeta ── */
+  --color-card-image-bg: #f3f4f6;
+  --color-card-check-icon: #ffffff;
+  --color-card-subzone-bg: #f9fafb;
+  --color-card-subzone-label: #4b5563;
+  --color-card-input-bg: #ffffff;
+  --color-card-success-bg: #f0fdf4;
+  --color-card-success-border: #4ade80;
+  --color-card-error-bg: #fef2f2;
+  --color-card-error-border: #fca5a5;
+  --color-card-delete-btn-icon: #ffffff;
+
+  /* ── Fase 5: Carrito ── */
+  --color-floating-cart-btn-text: #ffffff;
+  --color-cart-preview-bg: #ffffff;
+  --color-cart-item-bg: #ffffff;
+  --color-cart-confirm-btn-text: #ffffff;
+
+  /* ── Fase 5: Checkout ── */
+  --color-checkout-bg: #ffffff;
+  --color-checkout-input-bg: #ffffff;
+  --color-checkout-input-border: #e5e7eb;
+  --color-checkout-input-text: #111827;
+  --color-checkout-input-placeholder: #9ca3af;
+  --color-checkout-error-bg: #fef2f2;
+  --color-checkout-error-text: #ef4444;
+  --color-checkout-submit-btn-text: #ffffff;
 }
 
 body {

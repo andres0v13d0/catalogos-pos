@@ -76,10 +76,10 @@ export default function CheckoutModal({ onClose, onConfirm, creatingOrder }: Che
   };
 
   const inputClass = (field: string) =>
-    `w-full border rounded-xl px-4 py-3 text-sm text-gray-900 placeholder-gray-400 focus:outline-none transition-all ${errors[field] ? "border-[var(--color-checkout-error)] bg-red-50" : "border-gray-200 bg-white focus:border-[var(--color-checkout-input-focus)]"}`;
+    `w-full border rounded-xl px-4 py-3 text-sm text-[var(--color-checkout-input-text)] placeholder:text-[var(--color-checkout-input-placeholder)] focus:outline-none transition-all ${errors[field] ? "border-[var(--color-checkout-error-border)] bg-[var(--color-checkout-error-bg)]" : "border-[var(--color-checkout-input-border)] bg-[var(--color-checkout-input-bg)] focus:border-[var(--color-checkout-input-focus)]"}`;
 
   const selectClass = (field: string) =>
-    `w-full border rounded-xl px-4 py-3 text-sm focus:outline-none transition-all appearance-none bg-white text-gray-800 cursor-pointer ${errors[field] ? "border-[var(--color-checkout-error)] bg-red-50" : "border-gray-200 focus:border-[var(--color-checkout-input-focus)]"}`;
+    `w-full border rounded-xl px-4 py-3 text-sm focus:outline-none transition-all appearance-none bg-[var(--color-checkout-input-bg)] text-gray-800 cursor-pointer ${errors[field] ? "border-[var(--color-checkout-error-border)] bg-[var(--color-checkout-error-bg)]" : "border-[var(--color-checkout-input-border)] focus:border-[var(--color-checkout-input-focus)]"}`;
 
   return (
     <>
@@ -91,7 +91,7 @@ export default function CheckoutModal({ onClose, onConfirm, creatingOrder }: Che
           onClick={handleClose}
         >
           <div
-            className={`fixed bottom-0 left-0 right-0 bg-white rounded-t-3xl shadow-2xl flex flex-col transition-all duration-300 ${visible ? "translate-y-0" : "translate-y-full"}`}
+            className={`fixed bottom-0 left-0 right-0 bg-[var(--color-checkout-bg)] rounded-t-3xl shadow-2xl flex flex-col transition-all duration-300 ${visible ? "translate-y-0" : "translate-y-full"}`}
             style={{ maxHeight: "90vh" }}
             onClick={(e) => e.stopPropagation()}
           >
@@ -111,22 +111,22 @@ export default function CheckoutModal({ onClose, onConfirm, creatingOrder }: Che
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1.5">Nombres completos *</label>
                 <input value={form.firstName} onChange={(e) => set("firstName", e.target.value)} placeholder="Tus nombres" className={inputClass("firstName")} />
-                {errors.firstName && <p className="text-xs text-red-500 mt-1">{errors.firstName}</p>}
+                {errors.firstName && <p className="text-xs text-[var(--color-checkout-error-text)] mt-1">{errors.firstName}</p>}
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1.5">Apellidos *</label>
                 <input value={form.lastName} onChange={(e) => set("lastName", e.target.value)} placeholder="Tus apellidos" className={inputClass("lastName")} />
-                {errors.lastName && <p className="text-xs text-red-500 mt-1">{errors.lastName}</p>}
+                {errors.lastName && <p className="text-xs text-[var(--color-checkout-error-text)] mt-1">{errors.lastName}</p>}
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1.5">Teléfono WhatsApp *</label>
                 <input value={form.phone} onChange={(e) => set("phone", e.target.value)} placeholder="Ej: 3001234567" type="tel" className={inputClass("phone")} />
-                {errors.phone && <p className="text-xs text-red-500 mt-1">{errors.phone}</p>}
+                {errors.phone && <p className="text-xs text-[var(--color-checkout-error-text)] mt-1">{errors.phone}</p>}
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1.5">Dirección completa *</label>
                 <input value={form.address} onChange={(e) => set("address", e.target.value)} placeholder="Calle, carrera, número..." className={inputClass("address")} />
-                {errors.address && <p className="text-xs text-red-500 mt-1">{errors.address}</p>}
+                {errors.address && <p className="text-xs text-[var(--color-checkout-error-text)] mt-1">{errors.address}</p>}
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1.5">Barrio / Casa / Apto / Torre</label>
@@ -138,7 +138,7 @@ export default function CheckoutModal({ onClose, onConfirm, creatingOrder }: Che
                   <option value="">Selecciona un departamento</option>
                   {departments.map((d) => (<option key={d.departamento} value={d.departamento}>{d.departamento}</option>))}
                 </select>
-                {errors.department && <p className="text-xs text-red-500 mt-1">{errors.department}</p>}
+                {errors.department && <p className="text-xs text-[var(--color-checkout-error-text)] mt-1">{errors.department}</p>}
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1.5">Ciudad *</label>
@@ -146,11 +146,11 @@ export default function CheckoutModal({ onClose, onConfirm, creatingOrder }: Che
                   <option value="">Selecciona una ciudad</option>
                   {filteredCities.map((c) => (<option key={c} value={c}>{c}</option>))}
                 </select>
-                {errors.city && <p className="text-xs text-red-500 mt-1">{errors.city}</p>}
+                {errors.city && <p className="text-xs text-[var(--color-checkout-error-text)] mt-1">{errors.city}</p>}
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1.5">Notas adicionales</label>
-                <textarea value={form.notes} onChange={(e) => set("notes", e.target.value)} placeholder="Instrucciones especiales, referencias, etc." rows={2} className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-900 placeholder-gray-400 bg-white focus:outline-none focus:border-[var(--color-checkout-input-focus)] transition-all resize-none" />
+                <textarea value={form.notes} onChange={(e) => set("notes", e.target.value)} placeholder="Instrucciones especiales, referencias, etc." rows={2} className="w-full border border-[var(--color-checkout-input-border)] rounded-xl px-4 py-3 text-sm text-[var(--color-checkout-input-text)] placeholder:text-[var(--color-checkout-input-placeholder)] bg-[var(--color-checkout-input-bg)] focus:outline-none focus:border-[var(--color-checkout-input-focus)] transition-all resize-none" />
               </div>
             </div>
 
@@ -159,7 +159,7 @@ export default function CheckoutModal({ onClose, onConfirm, creatingOrder }: Che
               <button
                 onClick={handleSubmit}
                 disabled={creatingOrder}
-                className="w-full text-white py-4 rounded-2xl text-base font-bold flex items-center justify-center gap-3 transition-all disabled:opacity-70 cursor-pointer"
+                className="w-full text-[var(--color-checkout-submit-btn-text)] py-4 rounded-2xl text-base font-bold flex items-center justify-center gap-3 transition-all disabled:opacity-70 cursor-pointer"
                 style={{ background: "var(--color-checkout-submit-btn)", boxShadow: "0 4px 16px rgba(37,211,102,0.3)" }}
               >
                 {creatingOrder ? <AiOutlineLoading3Quarters className="w-5 h-5 animate-spin" /> : <FaWhatsapp className="w-5 h-5" />}
@@ -183,7 +183,7 @@ export default function CheckoutModal({ onClose, onConfirm, creatingOrder }: Che
           className={`fixed inset-0 z-[1000] flex items-center justify-center p-6 pointer-events-none transition-all duration-300 ${visible ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}
         >
           <div
-            className="bg-white rounded-2xl shadow-2xl flex flex-col w-full max-w-2xl max-h-[85vh] pointer-events-auto"
+            className="bg-[var(--color-checkout-bg)] rounded-2xl shadow-2xl flex flex-col w-full max-w-2xl max-h-[85vh] pointer-events-auto"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
@@ -204,19 +204,19 @@ export default function CheckoutModal({ onClose, onConfirm, creatingOrder }: Che
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1.5">Nombres completos *</label>
                   <input value={form.firstName} onChange={(e) => set("firstName", e.target.value)} placeholder="Tus nombres" className={inputClass("firstName")} />
-                  {errors.firstName && <p className="text-xs text-red-500 mt-1">{errors.firstName}</p>}
+                  {errors.firstName && <p className="text-xs text-[var(--color-checkout-error-text)] mt-1">{errors.firstName}</p>}
                 </div>
                 {/* Apellido — col 2 */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1.5">Apellidos *</label>
                   <input value={form.lastName} onChange={(e) => set("lastName", e.target.value)} placeholder="Tus apellidos" className={inputClass("lastName")} />
-                  {errors.lastName && <p className="text-xs text-red-500 mt-1">{errors.lastName}</p>}
+                  {errors.lastName && <p className="text-xs text-[var(--color-checkout-error-text)] mt-1">{errors.lastName}</p>}
                 </div>
                 {/* Teléfono — col 1 */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1.5">Teléfono WhatsApp *</label>
                   <input value={form.phone} onChange={(e) => set("phone", e.target.value)} placeholder="Ej: 3001234567" type="tel" className={inputClass("phone")} />
-                  {errors.phone && <p className="text-xs text-red-500 mt-1">{errors.phone}</p>}
+                  {errors.phone && <p className="text-xs text-[var(--color-checkout-error-text)] mt-1">{errors.phone}</p>}
                 </div>
                 {/* Barrio — col 2 */}
                 <div>
@@ -227,7 +227,7 @@ export default function CheckoutModal({ onClose, onConfirm, creatingOrder }: Che
                 <div className="col-span-2">
                   <label className="block text-sm font-medium text-gray-700 mb-1.5">Dirección completa *</label>
                   <input value={form.address} onChange={(e) => set("address", e.target.value)} placeholder="Calle, carrera, número..." className={inputClass("address")} />
-                  {errors.address && <p className="text-xs text-red-500 mt-1">{errors.address}</p>}
+                  {errors.address && <p className="text-xs text-[var(--color-checkout-error-text)] mt-1">{errors.address}</p>}
                 </div>
                 {/* Departamento — col 1 */}
                 <div>
@@ -236,7 +236,7 @@ export default function CheckoutModal({ onClose, onConfirm, creatingOrder }: Che
                     <option value="">Selecciona un departamento</option>
                     {departments.map((d) => (<option key={d.departamento} value={d.departamento}>{d.departamento}</option>))}
                   </select>
-                  {errors.department && <p className="text-xs text-red-500 mt-1">{errors.department}</p>}
+                  {errors.department && <p className="text-xs text-[var(--color-checkout-error-text)] mt-1">{errors.department}</p>}
                 </div>
                 {/* Ciudad — col 2 */}
                 <div>
@@ -245,12 +245,12 @@ export default function CheckoutModal({ onClose, onConfirm, creatingOrder }: Che
                     <option value="">Selecciona una ciudad</option>
                     {filteredCities.map((c) => (<option key={c} value={c}>{c}</option>))}
                   </select>
-                  {errors.city && <p className="text-xs text-red-500 mt-1">{errors.city}</p>}
+                  {errors.city && <p className="text-xs text-[var(--color-checkout-error-text)] mt-1">{errors.city}</p>}
                 </div>
                 {/* Notas — full width */}
                 <div className="col-span-2">
                   <label className="block text-sm font-medium text-gray-700 mb-1.5">Notas adicionales</label>
-                  <textarea value={form.notes} onChange={(e) => set("notes", e.target.value)} placeholder="Instrucciones especiales, referencias, etc." rows={3} className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-900 placeholder-gray-400 bg-white focus:outline-none focus:border-[var(--color-checkout-input-focus)] transition-all resize-none" />
+                  <textarea value={form.notes} onChange={(e) => set("notes", e.target.value)} placeholder="Instrucciones especiales, referencias, etc." rows={3} className="w-full border border-[var(--color-checkout-input-border)] rounded-xl px-4 py-3 text-sm text-[var(--color-checkout-input-text)] placeholder:text-[var(--color-checkout-input-placeholder)] bg-[var(--color-checkout-input-bg)] focus:outline-none focus:border-[var(--color-checkout-input-focus)] transition-all resize-none" />
                 </div>
               </div>
             </div>
@@ -260,7 +260,7 @@ export default function CheckoutModal({ onClose, onConfirm, creatingOrder }: Che
               <button
                 onClick={handleSubmit}
                 disabled={creatingOrder}
-                className="px-8 py-3.5 rounded-2xl text-base font-bold flex items-center justify-center gap-3 text-white transition-all disabled:opacity-70 cursor-pointer hover:-translate-y-0.5"
+                className="px-8 py-3.5 rounded-2xl text-base font-bold flex items-center justify-center gap-3 text-[var(--color-checkout-submit-btn-text)] transition-all disabled:opacity-70 cursor-pointer hover:-translate-y-0.5"
                 style={{ background: "var(--color-checkout-submit-btn)", boxShadow: "0 4px 16px rgba(37,211,102,0.3)" }}
               >
                 {creatingOrder ? <AiOutlineLoading3Quarters className="w-5 h-5 animate-spin" /> : <FaWhatsapp className="w-5 h-5" />}
