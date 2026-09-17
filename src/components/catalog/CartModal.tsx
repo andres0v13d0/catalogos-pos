@@ -52,14 +52,14 @@ export default function CartModal({ cart, onClose, onConfirm, onUpdateCart, requ
           <div className="flex-1 min-w-0">
             <p className="font-semibold text-[var(--color-text-primary)] text-sm truncate">{item.productName}</p>
             {item.variantOptions?.length > 0 && (
-              <p className="text-xs text-gray-500 mt-0.5">
+              <p className="text-xs text-[var(--color-text-secondary)] mt-0.5">
                 {item.variantOptions.map((v) => `${v.variantName}: ${v.optionValue}`).join(", ")}
               </p>
             )}
             <div className="flex items-center justify-between mt-2">
               <div className="flex items-center border border-gray-200 rounded-lg overflow-hidden">
                 <button onClick={() => updateQty(idx, item.quantity - 1)} className="w-7 h-7 flex items-center justify-center text-gray-500 hover:bg-gray-100 text-lg cursor-pointer">−</button>
-                <span className="w-8 text-center text-sm font-semibold text-gray-800">{item.quantity}</span>
+                <span className="w-8 text-center text-sm font-semibold text-[var(--color-text-primary)]">{item.quantity}</span>
                 <button onClick={() => updateQty(idx, item.quantity + 1)} className="w-7 h-7 flex items-center justify-center text-gray-500 hover:bg-gray-100 text-lg cursor-pointer">+</button>
               </div>
               {item.unitPrice > 0 && (
@@ -81,7 +81,7 @@ export default function CartModal({ cart, onClose, onConfirm, onUpdateCart, requ
     <div className="px-5 py-4 border-t border-gray-100">
       {total > 0 && (
         <div className="flex justify-between items-center mb-3">
-          <span className="text-gray-600 font-medium">Total estimado:</span>
+          <span className="text-[var(--color-text-secondary)] font-medium">Total estimado:</span>
           <span className="text-xl font-bold text-[var(--color-price)]">${total.toLocaleString("es-CO")}</span>
         </div>
       )}
@@ -113,7 +113,7 @@ export default function CartModal({ cart, onClose, onConfirm, onUpdateCart, requ
           >
             {/* Header */}
             <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
-              <h2 className="text-lg font-bold text-gray-800">Resumen del pedido</h2>
+              <h2 className="text-lg font-bold text-[var(--color-text-primary)]">Resumen del pedido</h2>
               <button onClick={handleClose} className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center cursor-pointer">
                 <FiX className="w-4 h-4 text-gray-600" />
               </button>
@@ -141,8 +141,8 @@ export default function CartModal({ cart, onClose, onConfirm, onUpdateCart, requ
           {/* Header */}
           <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100">
             <div>
-              <h2 className="text-lg font-bold text-gray-800">Resumen del pedido</h2>
-              <p className="text-xs text-gray-400 mt-0.5">{cart.length} producto{cart.length !== 1 ? "s" : ""}</p>
+              <h2 className="text-lg font-bold text-[var(--color-text-primary)]">Resumen del pedido</h2>
+              <p className="text-xs text-[var(--color-text-secondary)] mt-0.5">{cart.length} producto{cart.length !== 1 ? "s" : ""}</p>
             </div>
             <button onClick={handleClose} className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors cursor-pointer">
               <FiX className="w-4 h-4 text-gray-600" />

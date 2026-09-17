@@ -34,6 +34,7 @@
   --color-checkout-submit-btn: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
   --color-spinner: #fb923c;
   --color-grid-collapse-btn: #fa7e17;
+  --color-grid-collapse-btn-text: #ffffff;
 
   /* ── Fase 5: Header ── */
   --color-store-name: #111827;
@@ -54,6 +55,7 @@
   --color-card-subzone-bg: #f9fafb;
   --color-card-subzone-label: #4b5563;
   --color-card-input-bg: #ffffff;
+  --color-card-input-text: #1f2937;
   --color-card-success-bg: #f0fdf4;
   --color-card-success-border: #4ade80;
   --color-card-error-bg: #fef2f2;
@@ -82,4 +84,13 @@ body {
   color: var(--color-foreground);
   font-family: Ubuntu, sans-serif;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Selects de la tarjeta (cantidad/variantes): el texto de la opción visible y de
+   las opciones del dropdown nativo usan el token de texto de input de tarjeta.
+   Nota: <option> es estilizable en Chromium/Firefox; Safari tiene soporte limitado
+   (puede ignorar el color de las <option> del menú nativo). */
+.catalog-select,
+.catalog-select option {
+  color: var(--color-card-input-text);
 }

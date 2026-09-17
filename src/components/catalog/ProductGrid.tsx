@@ -49,9 +49,9 @@ function ExpandedCardInline({
       <ProductCard product={product} {...cardProps} />
       <button onClick={onClose} className="mx-auto mt-2 mb-1 flex items-center rounded-full overflow-hidden transition-all hover:-translate-y-0.5 cursor-pointer" style={{ background: "var(--color-grid-collapse-btn)" }}>
         <span className="w-7 h-7 flex items-center justify-center rounded-full" style={{ background: "#e06a0e" }}>
-          <FiChevronUp size={14} color="white" />
+          <FiChevronUp size={14} color="var(--color-grid-collapse-btn-text)" />
         </span>
-        <span className="text-xs font-medium text-white px-3 pr-4">Cerrar</span>
+        <span className="text-xs font-medium px-3 pr-4" style={{ color: "var(--color-grid-collapse-btn-text)" }}>Cerrar</span>
       </button>
     </div>
   );
@@ -214,7 +214,7 @@ export default function ProductGrid({ shortId, initialProducts, allProductIds, c
         const ids = data.productIds || [];
         setProductIds(ids);
         if (ids.length) {
-          const previews = await getProductPreviewsClient(ids);
+          const previews = await getProductPreviewsClient(ids, shortId);
           setProducts(previews);
         } else {
           setProducts([]);
@@ -230,7 +230,7 @@ export default function ProductGrid({ shortId, initialProducts, allProductIds, c
         setProductIds(ids);
         if (ids.length) {
           const first = ids.slice(0, ITEMS_PER_LOAD);
-          const previews = await getProductPreviewsClient(first);
+          const previews = await getProductPreviewsClient(first, shortId);
           setProducts(previews);
           loadIndexRef.current = ITEMS_PER_LOAD;
           setHasMore(ids.length > ITEMS_PER_LOAD);
@@ -256,7 +256,7 @@ export default function ProductGrid({ shortId, initialProducts, allProductIds, c
     try {
       const next = productIds.slice(loadIndexRef.current, loadIndexRef.current + ITEMS_PER_LOAD);
       if (!next.length) { setHasMore(false); return; }
-      const previews = await getProductPreviewsClient(next);
+      const previews = await getProductPreviewsClient(next, shortId);
       setProducts((prev) => [...prev, ...previews]);
       loadIndexRef.current += ITEMS_PER_LOAD;
       if (loadIndexRef.current >= productIds.length) setHasMore(false);

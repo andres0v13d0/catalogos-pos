@@ -12,12 +12,14 @@ export async function getCatalogProductIds(
   return res.json();
 }
 
-export async function getProductPreviews(ids: string[]): Promise<Product[]> {
+// shortId es opcional: si el catálogo es un afiliado de Red de ventas, el
+// backend lo usa para ocultar los precios (pone price/price2/price3 en 0).
+export async function getProductPreviews(ids: string[], shortId?: string): Promise<Product[]> {
   if (!ids.length) return [];
   const res = await fetch(`${API_URL}/public/catalog/products/previews`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ ids }),
+    body: JSON.stringify({ ids, shortId }),
     next: { revalidate: 60 },
   });
   if (!res.ok) throw new Error("Error al cargar productos");
@@ -25,12 +27,12 @@ export async function getProductPreviews(ids: string[]): Promise<Product[]> {
 }
 
 // Client-side fetches (no caching)
-export async function getProductPreviewsClient(ids: string[]): Promise<Product[]> {
+export async function getProductPreviewsClient(ids: string[], shortId?: string): Promise<Product[]> {
   if (!ids.length) return [];
   const res = await fetch(`${API_URL}/public/catalog/products/previews`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ ids }),
+    body: JSON.stringify({ ids, shortId }),
   });
   if (!res.ok) throw new Error("Error al cargar productos");
   return res.json();

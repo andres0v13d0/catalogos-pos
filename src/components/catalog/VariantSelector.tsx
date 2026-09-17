@@ -170,7 +170,7 @@ export default function VariantSelector({
     });
   };
 
-  const selectClass = "w-full px-3 py-2 border-2 border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[var(--color-card-input-focus)] transition-colors bg-[var(--color-card-input-bg)] text-gray-800 appearance-none cursor-pointer";
+  const selectClass = "catalog-select w-full px-3 py-2 border-2 border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[var(--color-card-input-focus)] transition-colors bg-[var(--color-card-input-bg)] appearance-none cursor-pointer";
 
   const filledRows = rows.filter((r) =>
     variantOptions.some((v) => r.selections[v.variantId]) || r.quantity

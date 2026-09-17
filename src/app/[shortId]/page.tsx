@@ -68,7 +68,7 @@ export default async function CatalogPage({ params }: PageProps) {
 
   let initialProducts: Product[] = [];
   try {
-    initialProducts = await getProductPreviews(firstBatch);
+    initialProducts = await getProductPreviews(firstBatch, shortId);
   } catch {
     initialProducts = [];
   }

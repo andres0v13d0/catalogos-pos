@@ -84,7 +84,7 @@ export default function CatalogStickyHeader({
               value={searchInput}
               onChange={(e) => onSearchChange(e.target.value)}
               autoFocus
-              className="w-full pl-9 pr-9 py-2.5 bg-[var(--color-search-bg)] rounded-xl border-2 border-gray-200 focus:border-[var(--color-search-focus)] focus:outline-none text-sm text-[var(--color-search-text)] placeholder:text-[var(--color-search-placeholder)]"
+              className="w-full pl-9 pr-9 py-2.5 bg-[var(--color-search-bg)] rounded-xl border-2 border-transparent focus:border-[var(--color-search-focus)] focus:outline-none text-sm text-[var(--color-search-text)] placeholder:text-[var(--color-search-placeholder)]"
             />
             {searchInput && (
               <button

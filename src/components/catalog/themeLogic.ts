@@ -31,6 +31,7 @@ export const THEME_KEY_TO_CSS_VAR: Record<string, string> = {
   checkoutSubmitBtn: "--color-checkout-submit-btn",
   spinnerColor: "--color-spinner",
   gridCollapseBtn: "--color-grid-collapse-btn",
+  gridCollapseBtnText: "--color-grid-collapse-btn-text",
 
   // ── Fase 5: Header ──
   storeNameColor: "--color-store-name",
@@ -51,6 +52,7 @@ export const THEME_KEY_TO_CSS_VAR: Record<string, string> = {
   cardSubzoneBg: "--color-card-subzone-bg",
   cardSubzoneLabel: "--color-card-subzone-label",
   cardInputBg: "--color-card-input-bg",
+  cardInputText: "--color-card-input-text",
   cardSuccessBg: "--color-card-success-bg",
   cardSuccessBorder: "--color-card-success-border",
   cardErrorBg: "--color-card-error-bg",
