@@ -393,12 +393,14 @@ export default function ProductGrid({ shortId, initialProducts, allProductIds, c
         onCategorySelect={handleCategorySelect}
       />
 
-      {/* Banner móvil — pegado arriba, sin padding */}
-      <div className="md:hidden relative w-full h-32">
-        {bannerSrc
-          ? <Image src={bannerSrc} alt="Banner" fill className="object-cover" sizes="100vw" priority />
-          : <div className="w-full h-full bg-gradient-to-r from-orange-400 to-orange-500" />}
-      </div>
+      {/* Banner móvil — pegado arriba, sin padding. Oculto en red de ventas */}
+      {!isReseller && (
+        <div className="md:hidden relative w-full h-32">
+          {bannerSrc
+            ? <Image src={bannerSrc} alt="Banner" fill className="object-cover" sizes="100vw" priority />
+            : <div className="w-full h-full bg-gradient-to-r from-orange-400 to-orange-500" />}
+        </div>
+      )}
 
       {/* Header desktop (banner full-width + barra info + categorías) */}
       <CatalogDesktopHeader

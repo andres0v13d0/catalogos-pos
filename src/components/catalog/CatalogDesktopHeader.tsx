@@ -38,18 +38,20 @@ export default function CatalogDesktopHeader({
 }: CatalogDesktopHeaderProps) {
   return (
     <div className="hidden md:block">
-      {/* Banner — full width, no padding, pegado arriba */}
-      <div className="relative w-full overflow-hidden bg-gray-200" style={{ maxHeight: 320, height: 256 }}>
-        {bannerSrc ? (
-          <Image src={bannerSrc} alt="Banner" fill className="object-cover" sizes="100vw" priority />
-        ) : (
-          <div className="w-full h-full bg-gradient-to-r from-orange-400 to-orange-500" />
-        )}
-        <div
-          className="absolute bottom-0 left-0 right-0 h-24"
-          style={{ background: "linear-gradient(to top,rgba(0,0,0,0.4),transparent)" }}
-        />
-      </div>
+      {/* Banner — full width, no padding, pegado arriba. Oculto en red de ventas */}
+      {!isReseller && (
+        <div className="relative w-full overflow-hidden bg-gray-200" style={{ maxHeight: 320, height: 256 }}>
+          {bannerSrc ? (
+            <Image src={bannerSrc} alt="Banner" fill className="object-cover" sizes="100vw" priority />
+          ) : (
+            <div className="w-full h-full bg-gradient-to-r from-orange-400 to-orange-500" />
+          )}
+          <div
+            className="absolute bottom-0 left-0 right-0 h-24"
+            style={{ background: "linear-gradient(to top,rgba(0,0,0,0.4),transparent)" }}
+          />
+        </div>
+      )}
 
       {/* Barra info: logo superpuesto + nombre + search + WA */}
       <div className="bg-[var(--color-header-bg)] shadow-sm border-b border-gray-200">
