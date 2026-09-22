@@ -380,6 +380,7 @@ export default function ProductGrid({ shortId, initialProducts, allProductIds, c
         visible={showStickyHeader}
         logoSrc={logoSrc}
         logoInitial={logoInitial}
+        isReseller={isReseller}
         title={title}
         whatsappNumber={whatsappNumber}
         searchInput={searchInput}
@@ -404,6 +405,7 @@ export default function ProductGrid({ shortId, initialProducts, allProductIds, c
         bannerSrc={bannerSrc}
         logoSrc={logoSrc}
         logoInitial={logoInitial}
+        isReseller={isReseller}
         title={title}
         description={description}
         whatsappNumber={whatsappNumber}

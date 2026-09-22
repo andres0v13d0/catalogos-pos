@@ -9,6 +9,7 @@ interface CatalogStickyHeaderProps {
   visible: boolean;
   logoSrc: string | null;
   logoInitial: string;
+  isReseller?: boolean;
   title: string;
   whatsappNumber: string | null;
   searchInput: string;
@@ -25,6 +26,7 @@ export default function CatalogStickyHeader({
   visible,
   logoSrc,
   logoInitial,
+  isReseller = false,
   title,
   whatsappNumber,
   searchInput,
@@ -43,18 +45,20 @@ export default function CatalogStickyHeader({
       }`}
     >
       <div className="flex items-center gap-3 px-4 py-2.5">
-        <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 bg-gray-100 flex items-center justify-center relative">
-          {logoSrc ? (
-            <Image src={logoSrc} alt="Logo" fill className="object-cover" sizes="40px" />
-          ) : (
-            <span
-              className="font-bold text-white text-lg w-full h-full flex items-center justify-center"
-              style={{ background: "linear-gradient(135deg,#fa7e17,#ff9a3d)" }}
-            >
-              {logoInitial}
-            </span>
-          )}
-        </div>
+        {!isReseller && (
+          <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 bg-gray-100 flex items-center justify-center relative">
+            {logoSrc ? (
+              <Image src={logoSrc} alt="Logo" fill className="object-cover" sizes="40px" />
+            ) : (
+              <span
+                className="font-bold text-white text-lg w-full h-full flex items-center justify-center"
+                style={{ background: "linear-gradient(135deg,#fa7e17,#ff9a3d)" }}
+              >
+                {logoInitial}
+              </span>
+            )}
+          </div>
+        )}
         <span className="flex-1 font-semibold text-[var(--color-store-name)] truncate text-sm">{title}</span>
         <button
           onClick={onToggleSearch}

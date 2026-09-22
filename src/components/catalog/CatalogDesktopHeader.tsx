@@ -9,6 +9,7 @@ interface CatalogDesktopHeaderProps {
   bannerSrc: string | null;
   logoSrc: string | null;
   logoInitial: string;
+  isReseller?: boolean;
   title: string;
   description: string | null;
   whatsappNumber: string | null;
@@ -24,6 +25,7 @@ export default function CatalogDesktopHeader({
   bannerSrc,
   logoSrc,
   logoInitial,
+  isReseller = false,
   title,
   description,
   whatsappNumber,
@@ -53,20 +55,22 @@ export default function CatalogDesktopHeader({
       <div className="bg-[var(--color-header-bg)] shadow-sm border-b border-gray-200">
         <div className="max-w-screen-xl mx-auto px-6 flex items-center gap-5 py-3">
           {/* Logo superpuesto — se sube sobre el banner con -mt-12 */}
-          <div className="flex-shrink-0 -mt-12 relative z-10">
-            <div className="w-24 h-24 rounded-2xl overflow-hidden border-4 border-white shadow-lg bg-gray-100 flex items-center justify-center relative">
-              {logoSrc ? (
-                <Image src={logoSrc} alt="Logo" fill className="object-cover" sizes="96px" />
-              ) : (
-                <span
-                  className="text-3xl font-bold text-white w-full h-full flex items-center justify-center"
-                  style={{ background: "linear-gradient(135deg,#fa7e17,#ff9a3d)" }}
-                >
-                  {logoInitial}
-                </span>
-              )}
+          {!isReseller && (
+            <div className="flex-shrink-0 -mt-12 relative z-10">
+              <div className="w-24 h-24 rounded-2xl overflow-hidden border-4 border-white shadow-lg bg-gray-100 flex items-center justify-center relative">
+                {logoSrc ? (
+                  <Image src={logoSrc} alt="Logo" fill className="object-cover" sizes="96px" />
+                ) : (
+                  <span
+                    className="text-3xl font-bold text-white w-full h-full flex items-center justify-center"
+                    style={{ background: "linear-gradient(135deg,#fa7e17,#ff9a3d)" }}
+                  >
+                    {logoInitial}
+                  </span>
+                )}
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Nombre y descripción */}
           <div className="flex flex-col min-w-0">
