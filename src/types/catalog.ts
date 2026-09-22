@@ -42,12 +42,15 @@ export interface CatalogData {
   id: string;
   publicName?: string;
   description?: string;
+  bannerUrl?: string | null;
   whatsappNumber?: string;
   requiresCheckout?: boolean;
-  layout?: "default" | "2col" | "shopify";
+  layout?: "default" | "1col" | "2col" | "shopify";
   priceDisplay?: "price" | "price2" | "price3" | null;
   categories?: CatalogCategory[];
   theme?: Record<string, string> | null;
+  /** true cuando el catálogo es un canal afiliado de la red de ventas */
+  isReseller?: boolean;
 }
 
 export interface BodegaData {

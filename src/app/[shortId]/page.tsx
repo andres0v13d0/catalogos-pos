@@ -27,7 +27,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   try {
     const { catalog, bodega } = await getCatalogProductIds(shortId);
     const title = catalog?.publicName || bodega?.publicName || bodega?.name || "Catálogo";
-    const logoUrl = bodega?.logoUrl || null;
+    // En canales afiliados no se expone el logo de la bodega
+    const logoUrl = catalog?.isReseller ? null : (bodega?.logoUrl || null);
 
     return {
       title,

@@ -353,14 +353,24 @@ export default function ProductGrid({ shortId, initialProducts, allProductIds, c
     }
   };
 
-  const layout = catalogData?.layout || "default";
+  // '1col' es el valor que devuelve el backend para el layout por defecto
+  const layout = (catalogData?.layout === "1col" ? "default" : catalogData?.layout) || "default";
   const priceDisplay = catalogData?.priceDisplay ?? null;
   const categories = catalogData?.categories || [];
   const whatsappNumber = catalogData?.whatsappNumber || bodega?.phone || null;
-  const title = bodega?.publicName || bodega?.name || catalogData?.publicName || "Catálogo";
+
+  // En canales afiliados (isReseller) el nombre del catálogo tiene prioridad
+  // para no exponer el nombre de empresa del proveedor
+  const isReseller = !!catalogData?.isReseller;
+  const title = catalogData?.publicName || bodega?.publicName || bodega?.name || "Catálogo";
   const description = bodega?.description || catalogData?.description || null;
-  const bannerSrc = bodega?.bannerUrl || null;
-  const logoSrc = bodega?.logoUrl || null;
+
+  // En canales afiliados no se expone el logo ni el banner de la bodega
+  // (preserva el anonimato del proveedor). Se usa el banner propio del catálogo.
+  const bannerSrc = isReseller
+    ? (catalogData?.bannerUrl || null)
+    : (catalogData?.bannerUrl || bodega?.bannerUrl || null);
+  const logoSrc = isReseller ? null : (bodega?.logoUrl || null);
   const logoInitial = bodega?.name?.charAt(0)?.toUpperCase() || "?";
 
   return (
