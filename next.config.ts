@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
         hostname: "flystock-product-images.s3.us-east-2.amazonaws.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "effierp.s3.us-east-2.amazonaws.com",
+        pathname: "/public/images/**",
+      },
     ],
     deviceSizes: [640, 828, 1200, 1920],
     imageSizes: [48, 96, 192, 384],
