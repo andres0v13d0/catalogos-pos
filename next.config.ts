@@ -6,6 +6,11 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
+        hostname: "cdn.flystock.com.co",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
         hostname: "flystock-product-images.s3.us-east-2.amazonaws.com",
         pathname: "/**",
       },
