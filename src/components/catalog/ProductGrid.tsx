@@ -367,9 +367,11 @@ export default function ProductGrid({ shortId, initialProducts, allProductIds, c
 
   // En canales afiliados no se expone el logo ni el banner de la bodega
   // (preserva el anonimato del proveedor). Se usa el banner propio del catálogo.
+  // En catálogos normales el banner de la bodega tiene prioridad; el del catálogo
+  // solo aplica como fallback si la bodega no tiene banner propio.
   const bannerSrc = isReseller
     ? (catalogData?.bannerUrl || null)
-    : (catalogData?.bannerUrl || bodega?.bannerUrl || null);
+    : (bodega?.bannerUrl || catalogData?.bannerUrl || null);
   const logoSrc = isReseller ? null : (bodega?.logoUrl || null);
   const logoInitial = bodega?.name?.charAt(0)?.toUpperCase() || "?";
 
