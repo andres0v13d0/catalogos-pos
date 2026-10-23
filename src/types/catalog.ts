@@ -9,6 +9,8 @@ export interface Combination {
   price: number;
   price2?: number;
   price3?: number;
+  /** Precio ya con la oferta aplicada (solo cuando el catálogo muestra precio normal); null si no hay oferta vigente */
+  promoPrice?: number | null;
   stock?: number;
   variantOptions: VariantOption[];
 }
@@ -27,6 +29,8 @@ export interface Product {
   price2?: number;
   price3?: number;
   basePrice?: number;
+  /** Precio ya con la oferta aplicada (solo cuando el catálogo muestra precio normal); null si no hay oferta vigente */
+  promoPrice?: number | null;
   imageUrl?: string;
   images?: string[];
   variants?: Variant[];

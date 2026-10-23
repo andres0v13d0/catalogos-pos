@@ -224,11 +224,25 @@ export default function ProductCard({
           <p className="px-4 pb-2 text-center text-sm text-[var(--color-text-secondary)] leading-relaxed line-clamp-3">{product.description}</p>
         )}
         {(price > 0 || hasCombinations) && (
-          <p className="px-4 pb-2 text-center text-xl font-bold text-[var(--color-price)]">
-            {typeof displayPrice === "object"
-              ? `${Math.round(displayPrice.min).toLocaleString("es-CO")} - ${Math.round(displayPrice.max).toLocaleString("es-CO")}`
-              : `${Math.round(displayPrice).toLocaleString("es-CO")}`}
-          </p>
+          typeof displayPrice !== "object" && product.promoPrice ? (
+            <div className="px-4 pb-2 flex items-center justify-center gap-2 flex-wrap">
+              <span className="text-xl font-bold text-[var(--color-price)]">
+                {Math.round(product.promoPrice).toLocaleString("es-CO")}
+              </span>
+              <span className="text-sm text-gray-400 line-through">
+                {Math.round(displayPrice).toLocaleString("es-CO")}
+              </span>
+              <span className="text-[11px] font-semibold bg-red-100 text-red-600 px-1.5 py-0.5 rounded">
+                Oferta
+              </span>
+            </div>
+          ) : (
+            <p className="px-4 pb-2 text-center text-xl font-bold text-[var(--color-price)]">
+              {typeof displayPrice === "object"
+                ? `${Math.round(displayPrice.min).toLocaleString("es-CO")} - ${Math.round(displayPrice.max).toLocaleString("es-CO")}`
+                : `${Math.round(displayPrice).toLocaleString("es-CO")}`}
+            </p>
+          )
         )}
 
         {/* Variant rows selector */}

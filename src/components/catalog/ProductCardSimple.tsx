@@ -42,9 +42,23 @@ export default function ProductCardSimple({ product, onClick, priceDisplay }: Pr
           {product.name}
         </h3>
         {price > 0 && (
-          <p className="text-sm font-bold text-[var(--color-price)]">
-            {Math.round(price).toLocaleString("es-CO")}
-          </p>
+          product.promoPrice ? (
+            <div className="flex items-center gap-1.5 flex-wrap">
+              <p className="text-sm font-bold text-[var(--color-price)]">
+                {Math.round(product.promoPrice).toLocaleString("es-CO")}
+              </p>
+              <p className="text-xs text-gray-400 line-through">
+                {Math.round(price).toLocaleString("es-CO")}
+              </p>
+              <span className="text-[10px] font-semibold bg-red-100 text-red-600 px-1.5 py-0.5 rounded">
+                Oferta
+              </span>
+            </div>
+          ) : (
+            <p className="text-sm font-bold text-[var(--color-price)]">
+              {Math.round(price).toLocaleString("es-CO")}
+            </p>
+          )
         )}
       </div>
     </div>
