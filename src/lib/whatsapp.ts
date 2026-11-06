@@ -49,3 +49,8 @@ export function getWhatsAppUrl(phone: string, message: string): string {
     ? `https://wa.me/${clean}?text=${encodeURIComponent(message)}`
     : `https://api.whatsapp.com/send?phone=${clean}&text=${encodeURIComponent(message)}`;
 }
+
+export function buildServiceMessage(name: string, durationMinutes?: number | null): string {
+  const duration = durationMinutes ? ` (${durationMinutes} min)` : "";
+  return `Hola, quiero agendar el servicio: ${name}${duration}`;
+}

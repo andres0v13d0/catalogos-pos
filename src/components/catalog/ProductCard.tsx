@@ -6,6 +6,7 @@ import Image from "next/image";
 import VariantSelector from "./VariantSelector";
 import QuantitySelector from "./QuantitySelector";
 import { Product, Combination, CartItem } from "@/types/catalog";
+import { buildServiceMessage, getWhatsAppUrl } from "@/lib/whatsapp";
 
 // ─── Image Carousel with swipe ─────────────────────────────────────────────
 function ImageCarousel({ images, productName }: { images: string[]; productName: string }) {
@@ -122,14 +123,16 @@ interface ProductCardProps {
   onUpdateItem: (item: CartItem) => void;
   onUpdateVariantItems: (productId: string, items: CartItem[]) => void;
   priceDisplay?: string | null;
+  whatsappNumber?: string | null;
 }
 
 export default function ProductCard({
-  product, isSelected, cartItems, cartItem, onToggle, onUpdateItem, onUpdateVariantItems, priceDisplay,
+  product, isSelected, cartItems, cartItem, onToggle, onUpdateItem, onUpdateVariantItems, priceDisplay, whatsappNumber,
 }: ProductCardProps) {
+  const isService = product.type === "service";
   const qty = cartItem?.quantity || 0;
   const hasCombinations = (product.combinations?.length || 0) > 0;
-  const hasVariants = (product.variants?.length || 0) > 0 && hasCombinations;
+  const hasVariants = !isService && (product.variants?.length || 0) > 0 && hasCombinations;
 
   const resolvePrice = (p: Product) => {
     if (priceDisplay === "price2") return parseFloat(String(p.price2)) || parseFloat(String(p.price)) || parseFloat(String(p.basePrice)) || 0;
@@ -245,6 +248,25 @@ export default function ProductCard({
           )
         )}
 
+        {isService && product.durationMinutes ? (
+          <p className="px-4 pb-2 text-center text-xs text-[var(--color-text-secondary)]">Duración: {product.durationMinutes} min</p>
+        ) : null}
+
+        {/* Servicio: se agenda por WhatsApp, sin carrito */}
+        {isService && whatsappNumber && (
+          <div className="p-3" onClick={(e) => e.stopPropagation()}>
+            <a
+              href={getWhatsAppUrl(whatsappNumber, buildServiceMessage(product.name, product.durationMinutes))}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full text-white py-3 rounded-xl text-sm font-bold text-center no-underline"
+              style={{ background: "var(--color-cart-confirm-btn)" }}
+            >
+              Agendar por WhatsApp
+            </a>
+          </div>
+        )}
+
         {/* Variant rows selector */}
         {hasVariants && (
           <VariantSelector
@@ -257,7 +279,7 @@ export default function ProductCard({
         )}
 
         {/* Simple quantity selector */}
-        {!hasVariants && (
+        {!isService && !hasVariants && (
           <div className="p-3 bg-[var(--color-card-subzone-bg)] border-t-2 border-gray-200" onClick={(e) => e.stopPropagation()}>
             <label className="block text-xs font-semibold text-[var(--color-card-subzone-label)] mb-1">Cantidad:</label>
             <div className={`grid gap-2 items-center p-3 rounded-xl border-2 transition-all ${isSelected ? "border-[var(--color-card-success-border)] bg-[var(--color-card-success-bg)]" : "border-gray-200 bg-[var(--color-card-input-bg)] hover:border-orange-300"}`} style={{ gridTemplateColumns: isSelected ? "1fr 32px" : "1fr" }}>

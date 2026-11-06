@@ -34,6 +34,7 @@ function ExpandedCardInline({
   onUpdateItem: (item: CartItem) => void;
   onUpdateVariantItems: (productId: string, items: CartItem[]) => void;
   priceDisplay?: string | null;
+  whatsappNumber?: string | null;
 }) {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -59,7 +60,7 @@ function ExpandedCardInline({
 
 // ─── MasonryGrid2Col ─────────────────────────────────────────────────────────
 function MasonryGrid2Col({
-  products, cart, selectedIds, onToggle, onUpdateItem, onUpdateVariantItems, loadingMore, hasMore, priceDisplay,
+  products, cart, selectedIds, onToggle, onUpdateItem, onUpdateVariantItems, loadingMore, hasMore, priceDisplay, whatsappNumber,
 }: {
   products: Product[];
   cart: CartItem[];
@@ -70,6 +71,7 @@ function MasonryGrid2Col({
   loadingMore: boolean;
   hasMore: boolean;
   priceDisplay?: string | null;
+  whatsappNumber?: string | null;
 }) {
   const [expandedProductId, setExpandedProductId] = useState<string | null>(null);
 
@@ -124,6 +126,7 @@ function MasonryGrid2Col({
     onUpdateItem,
     onUpdateVariantItems,
     priceDisplay,
+    whatsappNumber,
   };
 
   return (
@@ -448,7 +451,7 @@ export default function ProductGrid({ shortId, initialProducts, allProductIds, c
                 <MasonryGrid2Col
                   products={products} cart={cart} selectedIds={selectedIds}
                   onToggle={handleToggle} onUpdateItem={updateCartItem} onUpdateVariantItems={updateVariantItems}
-                  loadingMore={loadingMore} hasMore={hasMore} priceDisplay={priceDisplay}
+                  loadingMore={loadingMore} hasMore={hasMore} priceDisplay={priceDisplay} whatsappNumber={whatsappNumber}
                 />
               </div>
             ) : layout === "shopify" ? (
@@ -474,7 +477,7 @@ export default function ProductGrid({ shortId, initialProducts, allProductIds, c
                     onToggle={() => handleToggle(product)}
                     onUpdateItem={updateCartItem}
                     onUpdateVariantItems={updateVariantItems}
-                    priceDisplay={priceDisplay} />
+                    priceDisplay={priceDisplay} whatsappNumber={whatsappNumber} />
                 ))}
               </div>
             )}
@@ -503,7 +506,7 @@ export default function ProductGrid({ shortId, initialProducts, allProductIds, c
                     onToggle={() => handleToggle(product)}
                     onUpdateItem={updateCartItem}
                     onUpdateVariantItems={updateVariantItems}
-                    priceDisplay={priceDisplay} />
+                    priceDisplay={priceDisplay} whatsappNumber={whatsappNumber} />
                 ))}
               </div>
             ) : (
@@ -517,7 +520,7 @@ export default function ProductGrid({ shortId, initialProducts, allProductIds, c
                       onToggle={() => handleToggle(product)}
                       onUpdateItem={updateCartItem}
                       onUpdateVariantItems={updateVariantItems}
-                      priceDisplay={priceDisplay} />
+                      priceDisplay={priceDisplay} whatsappNumber={whatsappNumber} />
                   </div>
                 ))}
               </div>

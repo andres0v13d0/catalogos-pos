@@ -33,6 +33,9 @@ export interface Product {
   promoPrice?: number | null;
   imageUrl?: string;
   images?: string[];
+  /** 'service' = se agenda por WhatsApp, no entra al carrito */
+  type?: "physical" | "service";
+  durationMinutes?: number | null;
   variants?: Variant[];
   combinations?: Combination[];
 }
