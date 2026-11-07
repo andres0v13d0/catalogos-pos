@@ -129,6 +129,7 @@ interface ProductCardProps {
 export default function ProductCard({
   product, isSelected, cartItems, cartItem, onToggle, onUpdateItem, onUpdateVariantItems, priceDisplay, whatsappNumber,
 }: ProductCardProps) {
+  const [expanded, setExpanded] = useState(false);
   const isService = product.type === "service";
   const qty = cartItem?.quantity || 0;
   const hasCombinations = (product.combinations?.length || 0) > 0;
@@ -224,7 +225,14 @@ export default function ProductCard({
       <div className="flex flex-col flex-1">
         <h3 className="px-4 pt-3 pb-1 text-center text-base font-semibold text-[var(--color-text-primary)] leading-snug">{product.name}</h3>
         {product.description && (
-          <p className="px-4 pb-2 text-center text-sm text-[var(--color-text-secondary)] leading-relaxed line-clamp-3">{product.description}</p>
+          <div className="px-4 pb-2 text-center">
+            <p className={`text-sm text-[var(--color-text-secondary)] leading-relaxed ${expanded ? "" : "line-clamp-3"}`}>{product.description}</p>
+            {product.description.length > 90 && (
+              <button type="button" onClick={() => setExpanded((v) => !v)} className="text-xs font-semibold text-[var(--color-price)] cursor-pointer">
+                {expanded ? "Ver menos" : "Ver más"}
+              </button>
+            )}
+          </div>
         )}
         {(price > 0 || hasCombinations) && (
           typeof displayPrice !== "object" && product.promoPrice ? (
