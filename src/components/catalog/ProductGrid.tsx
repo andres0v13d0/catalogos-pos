@@ -400,10 +400,11 @@ export default function ProductGrid({ shortId, initialProducts, allProductIds, c
 
       {/* Banner móvil — pegado arriba, sin padding. Oculto en red de ventas */}
       {!isReseller && (
-        <div className="md:hidden relative w-full h-32">
+        <div className="md:hidden relative w-full">
+          {/* Proporción real del banner (sin recortar): ancho completo, alto automático */}
           {bannerSrc
-            ? <Image src={bannerSrc} alt="Banner" fill className="object-cover" sizes="100vw" priority />
-            : <div className="w-full h-full bg-gradient-to-r from-orange-400 to-orange-500" />}
+            ? <Image src={bannerSrc} alt="Banner" width={1600} height={600} className="w-full h-auto block" sizes="100vw" quality={85} priority />
+            : <div className="w-full h-32 bg-gradient-to-r from-orange-400 to-orange-500" />}
         </div>
       )}
 
