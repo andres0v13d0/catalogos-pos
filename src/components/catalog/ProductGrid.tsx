@@ -2,7 +2,6 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { FiShoppingBag, FiChevronUp } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
-import Image from "next/image";
 import ProductCard from "./ProductCard";
 import ProductCardSimple, { ProductCardSimpleSkeleton } from "./ProductCardSimple";
 import FloatingCartButton from "./FloatingCartButton";
@@ -10,6 +9,7 @@ import CartModal from "./CartModal";
 import CatalogStickyHeader from "./CatalogStickyHeader";
 import CatalogDesktopHeader from "./CatalogDesktopHeader";
 import CatalogSearchBar from "./CatalogSearchBar";
+import MobileBanner from "./MobileBanner";
 import { createPublicCatalogOrder, generateOrderShareLink, getProductPreviewsClient, getCatalogProductIdsClient } from "@/lib/api";
 import { buildWhatsAppMessage, getWhatsAppUrl, CustomerData } from "@/lib/whatsapp";
 import CheckoutModal from "./CheckoutModal";
@@ -403,7 +403,7 @@ export default function ProductGrid({ shortId, initialProducts, allProductIds, c
         <div className="md:hidden relative w-full">
           {/* Proporción real del banner (sin recortar): ancho completo, alto automático */}
           {bannerSrc
-            ? <Image src={bannerSrc} alt="Banner" width={1600} height={600} className="w-full h-auto block" sizes="100vw" quality={85} priority />
+            ? <MobileBanner src={bannerSrc} />
             : <div className="w-full h-32 bg-gradient-to-r from-orange-400 to-orange-500" />}
         </div>
       )}
