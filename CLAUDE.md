@@ -43,7 +43,7 @@ Lo único permitido como adición visual nueva: skeleton loaders en estados de c
 
 ## Lo que este proyecto NO debe hacer
 
-- No implementar autenticación ni manejo de sesión.
+- No implementar autenticación ni manejo de sesión **en el catálogo público** (`/[shortId]`). El panel (`/login`, `/recuperar`, `/panel/*`) sí usa Firebase (proyecto `flystockapp`) y valida el plan con `POST /users/owners/login?app=catalogs`; Firebase no debe cargarse en la ruta pública.
 - No incluir ninguna pantalla o lógica del POS interno (facturación, inventario, gestión de pedidos, dashboard admin).
 - No modificar el backend de Flystock — este proyecto es estrictamente un consumidor de los endpoints ya existentes.
 - No introducir dependencias de pago (sin CDN de imágenes de pago, sin servicios de transformación de imágenes de terceros) salvo que se apruebe explícitamente.
